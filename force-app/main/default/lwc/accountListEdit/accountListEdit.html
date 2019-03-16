@@ -1,0 +1,68 @@
+<template>
+<lightning-card title="Accounts List" icon-name="standard:account">
+    <div class="slds-p-around_x-small">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Account Name">Account Name</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Industry">Industry</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Phone">Phone</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Edit">Action</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={Accounts.data} for:item="acc"> 
+                    <tr key={acc.Id} class="slds-hint-parent">
+                        <td data-label="Prospecting">
+                            <div class="slds-truncate" title="Account Name">{acc.Name}</div>
+                        </td>
+                        <td data-label="Confidence">
+                            <div class="slds-truncate" title="Industry">{acc.Industry}</div>
+                        </td>
+                        <td data-label="Confidence">
+                            <div class="slds-truncate" title="Phone">{acc.Phone}</div>
+                        </td>
+                        <td data-label="Confidence">
+                            <div class="slds-truncate" title="Edit">
+                                <a name={acc.Id} onclick={handleClick}>
+                                    <lightning-icon icon-name="action:edit" size="x-small"></lightning-icon>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</lightning-card>
+<template if:true={open}>
+    <div class="demo-only" style="height: 640px;">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                    <lightning-icon icon-name="utility:close" title="close" size="small" onclick={closeModal} variant="inverse"></lightning-icon>
+                </button>
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Modal Header</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-update-rec record-id={rec2Id} oncreate={reloadList}></c-update-rec>
+            </div>
+            <!--<footer class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral">Cancel</button>
+            <button class="slds-button slds-button_brand">Save</button>
+            </footer>-->
+        </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+</template>
+</template>
