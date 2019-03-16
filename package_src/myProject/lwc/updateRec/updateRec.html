@@ -1,0 +1,8 @@
+<template>
+        <div class="slds-p-around_x-small">
+            <lightning-input label="Name" value={account.Name} onchange={handleNameChange}></lightning-input>
+            <lightning-input label="Industry" value={account.Industry} onchange={handleIndChange}></lightning-input>
+            <lightning-input type="Phone" label="Phone" value={account.Phone} onchange={handlePhnChange}></lightning-input><br/>
+            <lightning-button label="Save" value={account.Id} onclick={handleClick}></lightning-button>
+        </div>
+</template>

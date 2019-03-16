@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>myProject</fullName>
+    <types>
+        <members>accList</members>
+        <members>createAcc</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>accountListEdit</members>
+        <members>createRec</members>
+        <members>createRecord</members>
+        <members>createRecordWithFieldIntigrity</members>
+        <members>pubsub</members>
+        <members>updateRec</members>
+        <members>viewRecord</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <version>45.0</version>
+</Package>

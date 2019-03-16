@@ -1,0 +1,10 @@
+<template>
+        <lightning-card title="Record with Field Integrity" icon-name="standard:account">
+                <div class="slds-p-around_x-small">
+                    <lightning-input label="Name" value={rec.Name} onchange={handleNameChange}></lightning-input>
+                    <lightning-input label="Industry" value={rec.Industry} onchange={handleIndChange}></lightning-input>
+                    <lightning-input type="Phone" label="Phone" value={rec.Phone} onchange={handlePhnChange}></lightning-input><br/>
+                    <lightning-button label="Save" onclick={handleClick}></lightning-button>
+                </div>
+            </lightning-card>
+</template>
