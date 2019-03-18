@@ -2,7 +2,29 @@
     "compilerOptions": {
         "experimentalDecorators": true,
         "baseUrl": ".",
-        "paths": {}
+        "paths": {
+            "c/account-list-edit": [
+                "accountListEdit/accountListEdit.js"
+            ],
+            "c/create-rec": [
+                "createRec/createRec.js"
+            ],
+            "c/create-record": [
+                "createRecord/createRecord.js"
+            ],
+            "c/create-record-with-field-intigrity": [
+                "createRecordWithFieldIntigrity/createRecordWithFieldIntigrity.js"
+            ],
+            "c/pubsub": [
+                "pubsub/pubsub.js"
+            ],
+            "c/update-rec": [
+                "updateRec/updateRec.js"
+            ],
+            "c/view-record": [
+                "viewRecord/viewRecord.js"
+            ]
+        }
     },
     "include": [
         "**/*",
