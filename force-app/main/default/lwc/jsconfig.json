@@ -18,6 +18,9 @@
             "c/pubsub": [
                 "pubsub/pubsub.js"
             ],
+            "c/record-style": [
+                "recordStyle/recordStyle.js"
+            ],
             "c/update-rec": [
                 "updateRec/updateRec.js"
             ],
