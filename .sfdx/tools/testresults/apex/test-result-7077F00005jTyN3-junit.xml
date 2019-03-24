@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+    <testsuite name="force.apex" timestamp="2019-03-24T11:45:30+05:30" hostname="https://kishoreproj-dev-ed.my.salesforce.com" tests="1" failures="0"  errors="0"  time="0.05">
+        <properties>
+            <property name="outcome" value="Passed"/>
+            <property name="testsRan" value="1"/>
+            <property name="passing" value="1"/>
+            <property name="failing" value="0"/>
+            <property name="skipped" value="0"/>
+            <property name="passRate" value="100%"/>
+            <property name="failRate" value="0%"/>
+            <property name="testStartTime" value="Mar 24, 2019 11:45 AM"/>
+            <property name="testExecutionTime" value="0.05 s"/>
+            <property name="testTotalTime" value="0.05 s"/>
+            <property name="commandTime" value="16.98 s"/>
+            <property name="hostname" value="https://kishoreproj-dev-ed.my.salesforce.com"/>
+            <property name="orgId" value="00D7F000000sPu9UAE"/>
+            <property name="username" value="kishore@bandanadam.com"/>
+            <property name="testRunId" value="7077F00005jTyN3"/>
+            <property name="userId" value="0057F000000q3zOQAQ"/>
+        </properties>
+        <testcase name="testMethod1" classname="accListTest" time="0.05">
+        </testcase>
+    </testsuite>
+</testsuites>

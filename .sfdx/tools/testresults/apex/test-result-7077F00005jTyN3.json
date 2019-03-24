@@ -1,0 +1,46 @@
+{
+    "summary": {
+        "outcome": "Passed",
+        "testsRan": 1,
+        "passing": 1,
+        "failing": 0,
+        "skipped": 0,
+        "passRate": "100%",
+        "failRate": "0%",
+        "testStartTime": "Mar 24, 2019 11:45 AM",
+        "testExecutionTime": "52 ms",
+        "testTotalTime": "52 ms",
+        "commandTime": "16975 ms",
+        "hostname": "https://kishoreproj-dev-ed.my.salesforce.com",
+        "orgId": "00D7F000000sPu9UAE",
+        "username": "kishore@bandanadam.com",
+        "testRunId": "7077F00005jTyN3",
+        "userId": "0057F000000q3zOQAQ"
+    },
+    "tests": [
+        {
+            "attributes": {
+                "type": "ApexTestResult",
+                "url": "/services/data/v45.0/tooling/sobjects/ApexTestResult/07M7F000006PHsOUAW"
+            },
+            "Id": "07M7F000006PHsOUAW",
+            "QueueItemId": "7097F000000lyTrQAI",
+            "StackTrace": null,
+            "Message": null,
+            "AsyncApexJobId": "7077F00005jTyN3QAK",
+            "MethodName": "testMethod1",
+            "Outcome": "Pass",
+            "ApexClass": {
+                "attributes": {
+                    "type": "ApexClass",
+                    "url": "/services/data/v45.0/tooling/sobjects/ApexClass/01p7F00000V98KNQAZ"
+                },
+                "Id": "01p7F00000V98KNQAZ",
+                "Name": "accListTest",
+                "NamespacePrefix": null
+            },
+            "RunTime": 52,
+            "FullName": "accListTest.testMethod1"
+        }
+    ]
+}
