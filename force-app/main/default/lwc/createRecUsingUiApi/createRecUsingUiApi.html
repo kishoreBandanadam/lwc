@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Record CreateRecUsingUiApi" icon-name="standard:account">
+        <div class="slds-p-around_x-small">
+            <lightning-input label="Name" value={name} onchange={handleNameChange}></lightning-input>
+            <lightning-input label="Industry" value={industry} onchange={handleIndChange}></lightning-input>
+            <lightning-input type="Phone" label="Phone" value={phone} onchange={handlePhnChange}></lightning-input><br/>
+            <lightning-button label="Save" onclick={handleClick}></lightning-button>
+        </div>
+    </lightning-card>
+    <template if:true={record}>
+        <lightning-card title="View Record" icon-name="standard:account">
+            <div class="slds-p-around_x-small">
+                Name: <lightning-formatted-text label="Name" value={record.fields.Name}></lightning-formatted-text><br/>
+                Industry: <lightning-formatted-text label="Industry" value={record.fields.Industry}></lightning-formatted-text><br/>
+                Phone: <lightning-formatted-text label="Phone" value={record.fields.Phone}></lightning-formatted-text><br/>
+            </div>
+        </lightning-card>
+    </template>   
+    <template if:true={error}>
+        <c-error-panel errors={error}></c-error-panel>
+    </template>
+
+</template>

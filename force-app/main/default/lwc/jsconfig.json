@@ -15,6 +15,15 @@
             "c/create-record-with-field-intigrity": [
                 "createRecordWithFieldIntigrity/createRecordWithFieldIntigrity.js"
             ],
+            "c/create-rec-using-ui-api": [
+                "createRecUsingUiApi/createRecUsingUiApi.js"
+            ],
+            "c/error-panel": [
+                "errorPanel/errorPanel.js"
+            ],
+            "c/lds-utils": [
+                "ldsUtils/ldsUtils.js"
+            ],
             "c/pubsub": [
                 "pubsub/pubsub.js"
             ],
