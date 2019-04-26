@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Enter Location" icon-name="standard:location">
+
+            <lightning-layout>
+                    <lightning-layout-item size="6" padding="around-small">
+                        <div class="header-column">
+                                <lightning-input label="Location" value={location} onchange={handleLocationChange}></lightning-input></br>
+                                <lightning-button label="Select Location" onclick={selectLocation}></lightning-button>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6" padding="around-small">
+                        <div class="header-column">
+                            <lightning-input label="Location Selected" value={selectedLocation} readonly onchange={handleLocationChange}></lightning-input></br>
+                            <lightning-input label="Restaurant Name" value={restaurant} onchange={handleRestaurantChange}></lightning-input></br>
+                            <lightning-button label="Search Restaurants" onclick={searchRestaurant}></lightning-button>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+    </lightning-card>
+</template>

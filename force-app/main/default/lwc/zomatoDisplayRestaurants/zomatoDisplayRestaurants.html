@@ -1,0 +1,18 @@
+<template>
+        <lightning-card title="Restaurants nearby..." icon-name="custom:custom65">
+ 
+                <ul class="slds-has-dividers_bottom-space">
+                    <template for:each={restaurantsList} for:item='rest'>
+                            <li  key={rest.restaurant.id} class="slds-item" value={rest} onclick={handleRestaurantSelected}>
+                                    <lightning-tile label={rest.restaurant.name} href="javascript:void(0)" type="media">
+                                        <lightning-avatar slot="media" src={rest.restaurant.thumb} fallback-icon-name="standard:person_account" alternative-text={rest.restaurant.name}></lightning-avatar>
+                                        <ul class="slds-list_horizontal slds-has-dividers_right">
+                                            <li class="slds-item">{rest.restaurant.cuisines} . {rest.restaurant.user_rating.aggregate_rating}</li>
+                                            <li class="slds-item">Rs.{rest.restaurant.average_cost_for_two} for 2</li>
+                                        </ul>
+                                    </lightning-tile>
+                            </li>
+                    </template>
+                </ul>
+        </lightning-card>
+</template>

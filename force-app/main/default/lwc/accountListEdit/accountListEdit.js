@@ -28,6 +28,7 @@ export default class AccountListEdit extends LightningElement {
     }
 
     reloadList() {
+        this.closeModal();
         return refreshApex(this.Accounts);
     }
 }
