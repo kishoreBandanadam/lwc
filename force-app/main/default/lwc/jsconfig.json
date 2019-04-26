@@ -1,0 +1,56 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/accountListEdit": [
+                "accountListEdit/accountListEdit.js"
+            ],
+            "c/createRec": [
+                "createRec/createRec.js"
+            ],
+            "c/createRecUsingUiApi": [
+                "createRecUsingUiApi/createRecUsingUiApi.js"
+            ],
+            "c/createRecord": [
+                "createRecord/createRecord.js"
+            ],
+            "c/createRecordWithFieldIntigrity": [
+                "createRecordWithFieldIntigrity/createRecordWithFieldIntigrity.js"
+            ],
+            "c/errorPanel": [
+                "errorPanel/errorPanel.js"
+            ],
+            "c/ldsUtils": [
+                "ldsUtils/ldsUtils.js"
+            ],
+            "c/pubsub": [
+                "pubsub/pubsub.js"
+            ],
+            "c/recordStyle": [
+                "recordStyle/recordStyle.js"
+            ],
+            "c/updateRec": [
+                "updateRec/updateRec.js"
+            ],
+            "c/viewRecord": [
+                "viewRecord/viewRecord.js"
+            ],
+            "c/zomato": [
+                "zomato/zomato.js"
+            ],
+            "c/zomatoDisplayRestaurants": [
+                "zomatoDisplayRestaurants/zomatoDisplayRestaurants.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}
