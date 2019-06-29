@@ -20,7 +20,14 @@ export default class GetSet extends LightningElement {
     }
 
     handleNameChange(event) {
-        this.record = event.target.value;
+        this.record.Name = event.target.value;
     }
 
+    handleIndustryChange(event) {
+        this.record.Industry = event.target.value;    
+    }
+
+    handlePhoneChange(event) {
+        this.record.Phone = event.target.value;
+    }
 }
