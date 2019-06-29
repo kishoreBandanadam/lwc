@@ -1,7 +1,11 @@
+/* eslint-disable @lwc/lwc/no-async-operation */
 /* eslint-disable no-console */
 import { LightningElement, track } from 'lwc';
+import saveAccountsLwc from '@salesforce/apex/dynamicRowsController.saveAccountsLwc';
 
 export default class TestBinding extends LightningElement {
+    
+    @track toggleSaveLabel = 'Save';
     @track myList = [{Name : "Kishore", Industry : "Birlasoft", key : Math.random().toString(36).substring(2, 15)},
                      {Name : "Suresh", Industry : "TCS",  key : Math.random().toString(36).substring(2, 15)}];
 
@@ -32,5 +36,34 @@ export default class TestBinding extends LightningElement {
         console.log("indexPosition",indexPosition);
         if(this.myList.length > 1) 
         this.myList.splice(indexPosition, 1);
+    }
+
+    handleSave() {
+        this.toggleSaveLabel = 'Saving...'
+        let toSaveList = this.myList;
+        toSaveList.forEach((element, index) => {
+            if(element.Name === ''){
+                toSaveList.splice(index, 1);
+            }
+        });
+
+        this.myList = toSaveList;
+
+        saveAccountsLwc({records : toSaveList})
+        .then(() => {
+            this.toggleSaveLabel = 'Saved';
+            
+            this.error = undefined;
+        })
+        .catch(error => {
+            this.error = error;
+            this.record = undefined;
+            console.log("Error in Save call back:", this.error);
+        })
+        .finally(() => {
+            setTimeout(() => {
+                this.toggleSaveLabel = 'Save';
+            }, 3000);
+        });
     }
 }

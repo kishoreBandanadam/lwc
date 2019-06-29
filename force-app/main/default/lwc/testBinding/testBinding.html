@@ -1,16 +1,12 @@
 <template>
     <lightning-card title="LWC Table">
-            <div class="slds-no-flex">
-                <lightning-button-stateful
-                    label-when-off="Save"
-                    label-when-on="Saving..."
-                    label-when-hover="Save"
-                    variant="brand"
-                    selected={isSelected}
-                    onclick={handleClick}>
-                </lightning-button-stateful>
-            </div>
             <lightning-button-icon icon-name="utility:add" slot="actions" onclick={add}></lightning-button-icon>
+            <lightning-button 
+                label={toggleSaveLabel} 
+                icon-name="utility:save" 
+                slot="actions"
+                onclick={handleSave}>
+            </lightning-button>
         <div class="slds-p-around_x-small">
                 <table class="slds-table slds-table_cell-buffer slds-table_bordered">
                     <thead>
@@ -25,15 +21,15 @@
                     </thead>
                     <tbody>
                         <template for:each = {myList} for:item = "item" for:index="indexVar">
-                            <tr key={item.Id} class="slds-hint-parent">
+                            <tr key={item.key} class="slds-hint-parent">
                                 <td data-label="Prospecting">
                                     <div class="slds-truncate" title="Prospecting">
-                                        <lightning-input key={item.Id} data-id={item.Id} name="input1" label="Name" value={item.Name} variant="label-inline" onchange={handleNameChange}></lightning-input>
+                                        <lightning-input key={item.key} data-id={item.key} name="input1" label="Name" value={item.Name} variant="label-inline" onchange={handleNameChange}></lightning-input>
                                     </div>
                                 </td>
                                 <td data-label="Prospecting">
                                     <div class="slds-truncate" title="Prospecting">
-                                        <lightning-input key={item.Id} data-id={item.Id} name="input1" label="Industry" value={item.Industry} variant="label-inline" onchange={handleIndustryChange}></lightning-input>
+                                        <lightning-input key={item.key} data-id={item.key} name="input1" label="Industry" value={item.Industry} variant="label-inline" onchange={handleIndustryChange}></lightning-input>
                                     </div>
                                 </td>
                                 <td data-label="Prospecting">
