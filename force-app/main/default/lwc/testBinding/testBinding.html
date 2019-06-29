@@ -1,0 +1,40 @@
+<template>
+        <lightning-card title="LWC Table">
+                <lightning-button-icon icon-name="utility:add" slot="actions" onclick={add}></lightning-button-icon>
+            <div class="slds-p-around_x-small">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                              <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                  <div class="slds-truncate" title="Account Name">Account Name</div>
+                                </th>
+                                <th class="" scope="col">
+                                  <div class="slds-truncate" title="Industry">Industry</div>
+                                </th>
+                              </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each = {myList} for:item = "item" for:index="indexVar">
+                                <tr key={item.Id} class="slds-hint-parent">
+                                    <td data-label="Prospecting">
+                                        <div class="slds-truncate" title="Prospecting">
+                                            <lightning-input key={item.Id} data-id={item.Id} name="input1" label="Name" value={item.Name} variant="label-inline" onchange={handleNameChange}></lightning-input>
+                                        </div>
+                                    </td>
+                                    <td data-label="Prospecting">
+                                        <div class="slds-truncate" title="Prospecting">
+                                            <lightning-input key={item.Id} data-id={item.Id} name="input1" label="Industry" value={item.Industry} variant="label-inline" onchange={handleIndustryChange}></lightning-input>
+                                        </div>
+                                    </td>
+                                    <td data-label="Prospecting">
+                                        <a name={indexVar} onclick={remove}>
+                                                <lightning-icon icon-name="utility:delete" alternative-text="delete"  size="small"></lightning-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+            </div>
+    </lightning-card>
+</template>

@@ -6,6 +6,12 @@
             "c/accountListEdit": [
                 "accountListEdit/accountListEdit.js"
             ],
+            "c/binding": [
+                "binding/binding.js"
+            ],
+            "c/conditionalRendering": [
+                "conditionalRendering/conditionalRendering.js"
+            ],
             "c/createRec": [
                 "createRec/createRec.js"
             ],
@@ -18,11 +24,35 @@
             "c/createRecordWithFieldIntigrity": [
                 "createRecordWithFieldIntigrity/createRecordWithFieldIntigrity.js"
             ],
+            "c/dataTable": [
+                "dataTable/dataTable.js"
+            ],
+            "c/dynamicRowsChildLwc": [
+                "dynamicRowsChildLwc/dynamicRowsChildLwc.js"
+            ],
+            "c/dynamicRowsLwc": [
+                "dynamicRowsLwc/dynamicRowsLwc.js"
+            ],
+            "c/dynamicRowsParentLwc": [
+                "dynamicRowsParentLwc/dynamicRowsParentLwc.js"
+            ],
             "c/errorPanel": [
                 "errorPanel/errorPanel.js"
             ],
+            "c/getSet": [
+                "getSet/getSet.js"
+            ],
+            "c/getterAndSetters": [
+                "getterAndSetters/getterAndSetters.js"
+            ],
             "c/ldsUtils": [
                 "ldsUtils/ldsUtils.js"
+            ],
+            "c/multiSelectPickList": [
+                "multiSelectPickList/multiSelectPickList.js"
+            ],
+            "c/myFirstLwc": [
+                "myFirstLwc/myFirstLwc.js"
             ],
             "c/pubsub": [
                 "pubsub/pubsub.js"
@@ -30,8 +60,17 @@
             "c/recordStyle": [
                 "recordStyle/recordStyle.js"
             ],
+            "c/testBinding": [
+                "testBinding/testBinding.js"
+            ],
             "c/updateRec": [
                 "updateRec/updateRec.js"
+            ],
+            "c/usingLDS": [
+                "usingLDS/usingLDS.js"
+            ],
+            "c/usingWireService": [
+                "usingWireService/usingWireService.js"
             ],
             "c/viewRecord": [
                 "viewRecord/viewRecord.js"

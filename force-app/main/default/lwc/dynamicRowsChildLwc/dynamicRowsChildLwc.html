@@ -1,0 +1,19 @@
+<template>
+    <tr >
+        <td data-label="Prospecting" >
+            <div class="slds-truncate" title="Prospecting">
+                <lightning-input data-id={Id} name="Name" label="Name" value={Name} variant="label-inline" onchange={handleNameChange}></lightning-input>
+            </div>
+        </td>
+        <td data-label="Prospecting" >
+            <div class="slds-truncate" title="Prospecting">
+                <lightning-input data-id={Id} name="Industry" label="Industry" value={Industry} variant="label-inline" onchange={handleIndustryChange}></lightning-input>
+            </div>
+        </td>
+        <td data-label="Prospecting" >
+            <a name={indexVariable} onclick={remove}>
+                <lightning-icon icon-name="utility:delete" alternative-text="delete" size="small"></lightning-icon>
+            </a>
+        </td>
+    </tr>
+</template>

@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Wire Service" icon-name="standard:account">
+        <div class="slds-p-around_x-small">
+            <div class="slds-box">
+                <lightning-layout>
+                    <lightning-layout-item size="4" padding="around-small">
+                        <div class="slds-form-element__label">Account Name</div><br/>
+                        <lightning-formatted-text value={name} ></lightning-formatted-text><br/>
+                        <div class="slds-form-element__label">Industry</div><br/>
+                        <lightning-formatted-text value={industry} ></lightning-formatted-text><br/>
+                        <div class="slds-form-element__label">Phone</div><br/>
+                        <lightning-formatted-phone value={phone}></lightning-formatted-phone><br/>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </div>
+    </lightning-card>   
+</template>

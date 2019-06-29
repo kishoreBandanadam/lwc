@@ -3,8 +3,9 @@ import { LightningElement, api, wire } from 'lwc';
 import viewRecord from '@salesforce/apex/createAcc.viewRecord';
 import { CurrentPageReference } from 'lightning/navigation';
 import { registerListener, unregisterAllListeners } from 'c/pubsub';
+import { NavigationMixin } from 'lightning/navigation';
 
-export default class ViewRecord extends LightningElement {
+export default class ViewRecord extends NavigationMixin(LightningElement) {
     @api recordId;
     @api rec = {
         Id : '',
@@ -42,6 +43,18 @@ export default class ViewRecord extends LightningElement {
         if(this.rec.Id === accountRecord.Id){
             this.rec = accountRecord;
         }
+    }
+
+    openModal() {
+        this[NavigationMixin.Navigate]({
+            type: "standard__objectPage",
+            attributes: {
+                objectApiName: "Account",
+                actionName: "new"
+            }
+        });
+
+       
     }
     
 }

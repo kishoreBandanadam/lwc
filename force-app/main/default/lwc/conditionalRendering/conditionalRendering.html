@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Render Lists">
+        <div class="slds-p-around_small">
+            <template for:each={records.data} for:item="rec">
+                <div class="slds-p-left_small lgc-bg" key={rec.Id}>
+                    {rec.Name}
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

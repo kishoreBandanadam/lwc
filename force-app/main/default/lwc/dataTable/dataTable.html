@@ -1,0 +1,7 @@
+<template>
+    <lightning-card title="Hello">
+        <template for:each={records} for:item="rec">
+            <lightning-input key={rec.uuid} label="Name" value={fullRecord} onchange={handleLabelChange}></lightning-input>
+        </template>
+    </lightning-card>
+</template>

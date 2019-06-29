@@ -114,7 +114,7 @@
                 "metadataName": "ExperienceBundle",
                 "useSparseComposition": false,
                 "decompositions": [],
-                "contentStrategy": "nonDecomposedContent"
+                "contentStrategy": "experienceBundleStrategy"
             },
             "hasVirtualSubtypes": false
         },

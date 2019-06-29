@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="LWC Table">
+        <lightning-button-icon icon-name="utility:add" slot="actions" onclick={add}></lightning-button-icon>
+    <div class="slds-p-around_x-small">
+
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                      <tr class="slds-line-height_reset">
+                        <th class="hello" scope="col">
+                          <div class="slds-truncate" title="Account Name">Account Name</div>
+                        </th>
+                      </tr>
+                </thead>
+                <tbody>
+                    <template for:each={myList} for:item ="item" for:index="indexVar">
+                        <c-dynamic-rows-child-lwc index-variable={indexVar} key={item.Id} record={item} onrecordchange={handleChange} onsendindex={getIndex} ></c-dynamic-rows-child-lwc>
+                    </template>
+                </tbody>
+            </table>
+    </div>
+</lightning-card>
+</template>
