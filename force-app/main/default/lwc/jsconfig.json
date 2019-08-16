@@ -12,6 +12,9 @@
             "c/conditionalRendering": [
                 "conditionalRendering/conditionalRendering.js"
             ],
+            "c/contentWorkspaceCustom": [
+                "contentWorkspaceCustom/contentWorkspaceCustom.js"
+            ],
             "c/createRec": [
                 "createRec/createRec.js"
             ],
@@ -26,6 +29,15 @@
             ],
             "c/dataTable": [
                 "dataTable/dataTable.js"
+            ],
+            "c/dependentPickList": [
+                "dependentPickList/dependentPickList.js"
+            ],
+            "c/dependentPickList2": [
+                "dependentPickList2/dependentPickList2.js"
+            ],
+            "c/dynamic": [
+                "dynamic/dynamic.js"
             ],
             "c/dynamicRowsChildLwc": [
                 "dynamicRowsChildLwc/dynamicRowsChildLwc.js"
@@ -48,11 +60,23 @@
             "c/ldsUtils": [
                 "ldsUtils/ldsUtils.js"
             ],
+            "c/lookupLwc": [
+                "lookupLwc/lookupLwc.js"
+            ],
+            "c/lwcLookUp": [
+                "lwcLookUp/lwcLookUp.js"
+            ],
             "c/multiSelectPickList": [
                 "multiSelectPickList/multiSelectPickList.js"
             ],
             "c/myFirstLwc": [
                 "myFirstLwc/myFirstLwc.js"
+            ],
+            "c/objectInfo": [
+                "objectInfo/objectInfo.js"
+            ],
+            "c/pickList": [
+                "pickList/pickList.js"
             ],
             "c/pubsub": [
                 "pubsub/pubsub.js"
@@ -68,6 +92,9 @@
             ],
             "c/usingLDS": [
                 "usingLDS/usingLDS.js"
+            ],
+            "c/usingLwc": [
+                "usingLwc/usingLwc.js"
             ],
             "c/usingWireService": [
                 "usingWireService/usingWireService.js"

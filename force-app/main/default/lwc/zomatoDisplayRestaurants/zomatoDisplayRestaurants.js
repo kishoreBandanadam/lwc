@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
-import { LightningElement, wire, track} from 'lwc';
+import { LightningElement, wire, api} from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
 import { registerListener, unregisterAllListeners } from 'c/pubsub';
 
 export default class ZomatoDisplayRestaurants extends LightningElement {
 
-    @track restaurantsList = [];
+    @api restaurantsList = [];
 
     @wire(CurrentPageReference) pageRef;
 

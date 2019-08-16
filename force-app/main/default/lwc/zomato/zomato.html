@@ -11,8 +11,16 @@
                     <lightning-layout-item size="6" padding="around-small">
                         <div class="header-column">
                             <lightning-input label="Location Selected" value={selectedLocation} readonly onchange={handleLocationChange}></lightning-input></br>
-                            <lightning-input label="Restaurant Name" value={restaurant} onchange={handleRestaurantChange}></lightning-input></br>
+                            <lightning-input label="Restaurant Name/Cuisine" value={restaurant} placeholder="Enter Restaurant or Cuisine" onchange={handleRestaurantChange}></lightning-input></br>
                             <lightning-button label="Search Restaurants" onclick={searchRestaurant}></lightning-button>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+
+                <lightning-layout>
+                    <lightning-layout-item size="6" padding="around-small">
+                        <div class="header-column">
+                            <c-zomato-display-restaurants restaurants-list={restaurantsListl}></c-zomato-display-restaurants>
                         </div>
                     </lightning-layout-item>
                 </lightning-layout>

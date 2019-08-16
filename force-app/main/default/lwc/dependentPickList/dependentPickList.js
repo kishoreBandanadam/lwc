@@ -8,16 +8,30 @@ export default class DependentPickList extends LightningElement {
     @api objectApiName = undefined;
     @api recordTypeId = undefined;
     @api pickListfieldApiName = undefined;
-    @api controllingFieldValue = '';
+    @api controllingFieldValue;
     @api label = undefined;
-    @api selectedValue = undefined;
+    //@api selectedValue = undefined;
+    previousValue;
+    @track value = undefined;
+
+    @api 
+    get selectedValue() {
+        console.log("getter dependent", this.value);
+        return this.value;
+    }
+    set selectedValue(val) {
+        console.log("setter dependent", val);
+
+            this.value = val;
+   
+    }
     
     @track options = [
                       {label : 'Default 1', value : 'Default1'},
                       {label : 'Default 2', value : 'Default2'},
                       {label : '--None--', value : ''}
                      ];
-    @track value = '';
+    //@track value = '';
     @track myMap = undefined;
 
     @wire(getObjectInfo, { objectApiName: '$objectApiName' })
@@ -72,6 +86,7 @@ export default class DependentPickList extends LightningElement {
                         console.log("MAP",pickMap);
                         this.myMap = pickMap;
                         console.log("In Wire", this.myMap);
+                        console.log("etter controllingFieldValue",this.controllingFieldValue);
                         //Checking if selected and controlling values exist, and populating values accordingly
                         if (this.selectedValue) {
                             this.value = this.selectedValue;
@@ -104,6 +119,7 @@ export default class DependentPickList extends LightningElement {
     }
 
     handleChange(event) {
+        console.log("etter selected val in handle change", this.selectedValue);
         this.value = event.target.value;
         console.log("event.target.value",event.target.value);
         console.log("this.value",this.value);
@@ -123,7 +139,10 @@ export default class DependentPickList extends LightningElement {
             //this.options = this.myMap.get(this.controllingFieldValue);
             //this.options.push({ label: 'None', value: "" });
             let tempOptions = [{ label: '--None--', value: "" }];
-            this.myMap.get(this.controllingFieldValue).forEach(opt => tempOptions.push(opt));
+            if (this.controllingFieldValue !== null && this.controllingFieldValue !== undefined && this.controllingFieldValue !== '') {
+                console.log("this.controllingFieldValue", this.controllingFieldValue);
+                this.myMap.get(this.controllingFieldValue).forEach(opt => tempOptions.push(opt));
+            }
             this.options = tempOptions;
         }
         //console.log("this.myMap", this.myMap);
@@ -134,7 +153,14 @@ export default class DependentPickList extends LightningElement {
     reinitiatemap() {
         if (this.myMap !== null && this.myMap !== undefined){
             this.initiateMap(this.myMap);
+            console.log("this.myMap length", this.myMap.length);
         }
+    }
+
+    //call this method just to refresh fresh data like custom refresh
+    @api
+    refresh() {
+        this. value = this.selectedValue;
     }
 
 }

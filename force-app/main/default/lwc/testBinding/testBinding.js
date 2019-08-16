@@ -52,7 +52,7 @@ export default class TestBinding extends LightningElement {
         saveAccountsLwc({records : toSaveList})
         .then(() => {
             this.toggleSaveLabel = 'Saved';
-            
+            this.myList = [{Name : "", Industry : "",  key : Math.random().toString(36).substring(2, 15)}];
             this.error = undefined;
         })
         .catch(error => {

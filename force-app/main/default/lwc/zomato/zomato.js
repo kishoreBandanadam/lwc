@@ -11,6 +11,7 @@ export default class Zomato extends LightningElement {
     @track selectedLocation = '';
     entityType = '';
     restaurant = '';
+    @track restaurantsListl = [];
 
     @wire(CurrentPageReference) pageRef;
 
@@ -83,6 +84,7 @@ export default class Zomato extends LightningElement {
                         variant: 'success',
                     }),
                 );*/
+                this.restaurantsListl = this.message;
             }
             else {
                 console.log("No info returned in call back in searchRestaurant method");
