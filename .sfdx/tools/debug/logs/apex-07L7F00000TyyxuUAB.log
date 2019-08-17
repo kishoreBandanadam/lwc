@@ -1,0 +1,219 @@
+46.0 APEX_CODE,FINEST;APEX_PROFILING,FINEST;CALLOUT,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,FINER;WAVE,INFO;WORKFLOW,INFO
+09:44:22.0 (150285)|USER_INFO|[EXTERNAL]|0057F000000q3zO|kishore@bandanadam.com|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+09:44:22.0 (219625)|EXECUTION_STARTED
+09:44:22.0 (226069)|CODE_UNIT_STARTED|[EXTERNAL]|Aura
+09:44:22.0 (2215058)|CODE_UNIT_STARTED|[EXTERNAL]|01p7F00000UtZBC|ContactController.lookUp1(String, String)
+09:44:22.0 (2374291)|HEAP_ALLOCATE|[72]|Bytes:3
+09:44:22.0 (2428431)|HEAP_ALLOCATE|[77]|Bytes:152
+09:44:22.0 (2445322)|HEAP_ALLOCATE|[342]|Bytes:408
+09:44:22.0 (2458621)|HEAP_ALLOCATE|[355]|Bytes:408
+09:44:22.0 (2470126)|HEAP_ALLOCATE|[467]|Bytes:48
+09:44:22.0 (2496788)|HEAP_ALLOCATE|[139]|Bytes:6
+09:44:22.0 (2556185)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:21
+09:44:22.0 (2562151)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:38
+09:44:22.0 (2574995)|METHOD_ENTRY|[1]|01p7F00000UtZBC|ContactController.ContactController()
+09:44:22.0 (2581629)|STATEMENT_EXECUTE|[1]
+09:44:22.0 (2586030)|STATEMENT_EXECUTE|[1]
+09:44:22.0 (2596834)|METHOD_EXIT|[1]|ContactController
+09:44:22.0 (2604337)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:18
+09:44:22.0 (2607960)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:7
+09:44:22.0 (2629199)|SYSTEM_MODE_ENTER|false
+09:44:22.0 (2637545)|VARIABLE_SCOPE_BEGIN|[67]|preSelectedId|String|false|false
+09:44:22.0 (2658936)|VARIABLE_ASSIGNMENT|[67]|preSelectedId|"0017F000005oCnsQAE"
+09:44:22.0 (2664162)|VARIABLE_SCOPE_BEGIN|[67]|myObject|String|false|false
+09:44:22.0 (2671837)|VARIABLE_ASSIGNMENT|[67]|myObject|"account"
+09:44:22.0 (2680554)|STATEMENT_EXECUTE|[67]
+09:44:22.0 (2711389)|HEAP_ALLOCATE|[50]|Bytes:5
+09:44:22.0 (2733964)|HEAP_ALLOCATE|[56]|Bytes:5
+09:44:22.0 (2741609)|HEAP_ALLOCATE|[64]|Bytes:7
+09:44:22.0 (2776549)|STATEMENT_EXECUTE|[69]
+09:44:22.0 (2778567)|STATEMENT_EXECUTE|[70]
+09:44:22.0 (2815502)|HEAP_ALLOCATE|[70]|Bytes:4
+09:44:22.0 (2878754)|VARIABLE_SCOPE_BEGIN|[70]|Ids|Set<String>|true|false
+09:44:22.0 (2916196)|VARIABLE_ASSIGNMENT|[70]|Ids|[]|0x45866e9d
+09:44:22.0 (2922816)|STATEMENT_EXECUTE|[71]
+09:44:22.0 (2956579)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+09:44:22.0 (2966350)|STATEMENT_EXECUTE|[72]
+09:44:22.0 (2972465)|HEAP_ALLOCATE|[72]|Bytes:21
+09:44:22.0 (2978984)|HEAP_ALLOCATE|[72]|Bytes:17
+09:44:22.0 (2992542)|HEAP_ALLOCATE|[72]|Bytes:45
+09:44:22.0 (2998311)|VARIABLE_SCOPE_BEGIN|[72]|myQuery|String|false|false
+09:44:22.0 (3012808)|VARIABLE_ASSIGNMENT|[72]|myQuery|"Select Id, Name from (25 more) ..."
+09:44:22.0 (3018770)|STATEMENT_EXECUTE|[73]
+09:44:22.0 (3580318)|SOQL_EXECUTE_BEGIN|[73]|Aggregations:0|Select Id, Name from account Where Id IN :Ids
+09:44:22.0 (3642745)|LIMIT_USAGE|[73]|SOQL|1|100
+09:44:22.0 (3656298)|LIMIT_USAGE|[73]|AGGS|0|300
+09:44:22.0 (6762828)|SOQL_EXECUTE_END|[73]|Rows:1
+09:44:22.0 (6777840)|LIMIT_USAGE|[73]|SOQL_ROWS|1|50000
+09:44:22.0 (6794891)|HEAP_ALLOCATE|[73]|Bytes:8
+09:44:22.0 (6809457)|HEAP_ALLOCATE|[73]|Bytes:58
+09:44:22.0 (6873787)|HEAP_ALLOCATE|[73]|Bytes:8
+09:44:22.0 (6887059)|HEAP_ALLOCATE|[73]|Bytes:33
+09:44:22.0 (6942201)|HEAP_ALLOCATE|[73]|Bytes:12
+09:44:22.0 (6950224)|VARIABLE_SCOPE_BEGIN|[73]|record|SObject|true|false
+09:44:22.0 (6973152)|VARIABLE_ASSIGNMENT|[73]|record|{"Id":"0017F000005oCnsQAE","Name":"University of Arizon (1 more) ..."}|0x363638dc
+09:44:22.0 (6980042)|STATEMENT_EXECUTE|[74]
+09:44:22.0 (6996411)|HEAP_ALLOCATE|[74]|Bytes:10
+09:44:22.0 (7008835)|HEAP_ALLOCATE|[74]|Bytes:55
+09:44:22.0 (7049284)|USER_DEBUG|[74]|DEBUG|myQuery:::Select Id, Name from account Where Id IN :Ids
+09:44:22.0 (7059299)|STATEMENT_EXECUTE|[75]
+09:44:22.0 (7062176)|HEAP_ALLOCATE|[75]|Bytes:9
+09:44:22.0 (7127822)|HEAP_ALLOCATE|[75]|Bytes:59
+09:44:22.0 (7143985)|HEAP_ALLOCATE|[75]|Bytes:68
+09:44:22.0 (7153670)|USER_DEBUG|[75]|DEBUG|record:::Account:{Id=0017F000005oCnsQAE, Name=University of Arizona}
+09:44:22.0 (7161011)|STATEMENT_EXECUTE|[76]
+09:44:22.0 (7168932)|SYSTEM_MODE_EXIT|false
+09:44:22.7 (7197313)|CUMULATIVE_LIMIT_USAGE
+09:44:22.7 (7197313)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+09:44:22.7 (7197313)|TOTAL_EMAIL_RECIPIENTS_QUEUED|0
+09:44:22.7 (7197313)|STATIC_VARIABLE_LIST|
+  int:BYTES:0
+  int:BYTES:0
+  char[]:DigitOnes:0
+  char[]:DigitTens:0
+  Boolean:FALSE:0
+  int:MAX_EXPONENT:0
+  double:MAX_VALUE:0
+  int:MAX_VALUE:0
+  int:MIN_EXPONENT:0
+  double:MIN_NORMAL:0
+  double:MIN_VALUE:0
+  int:MIN_VALUE:0
+  double:NEGATIVE_INFINITY:0
+  double:NaN:0
+  double:POSITIVE_INFINITY:0
+  int:SIZE:0
+  int:SIZE:0
+  Boolean:TRUE:0
+  String:_sfdcAdditionalCodeLocations:0
+  String:_sfdcSuppressedCodeLocations:0
+  char[]:digits:0
+  long:serialVersionUID:0
+  long:serialVersionUID:0
+  long:serialVersionUID:0
+  int[]:sizeTable:0
+
+09:44:22.7 (7197313)|CUMULATIVE_LIMIT_USAGE_END
+
+09:44:22.0 (18171476)|CODE_UNIT_FINISHED|ContactController.lookUp1(String, String)
+09:44:22.0 (18263880)|CODE_UNIT_FINISHED|Aura
+09:44:22.0 (19581328)|EXECUTION_FINISHED
+09:44:22.22 (22932012)|USER_INFO|[EXTERNAL]|0057F000000q3zO|kishore@bandanadam.com|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+09:44:22.22 (22964034)|EXECUTION_STARTED
+09:44:22.22 (22968065)|CODE_UNIT_STARTED|[EXTERNAL]|Aura
+09:44:22.22 (24360726)|CODE_UNIT_STARTED|[EXTERNAL]|01p7F00000UtZBC|ContactController.lookUp1(String, String)
+09:44:22.22 (24414552)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:18
+09:44:22.22 (24420561)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:7
+09:44:22.22 (24433126)|SYSTEM_MODE_ENTER|false
+09:44:22.22 (24439386)|VARIABLE_SCOPE_BEGIN|[67]|preSelectedId|String|false|false
+09:44:22.22 (24455372)|VARIABLE_ASSIGNMENT|[67]|preSelectedId|"0017F000005oCnsQAE"
+09:44:22.22 (24460250)|VARIABLE_SCOPE_BEGIN|[67]|myObject|String|false|false
+09:44:22.22 (24468363)|VARIABLE_ASSIGNMENT|[67]|myObject|"account"
+09:44:22.22 (24476886)|STATEMENT_EXECUTE|[67]
+09:44:22.22 (24490992)|STATEMENT_EXECUTE|[69]
+09:44:22.22 (24492750)|STATEMENT_EXECUTE|[70]
+09:44:22.22 (24503667)|HEAP_ALLOCATE|[70]|Bytes:4
+09:44:22.22 (24520978)|VARIABLE_SCOPE_BEGIN|[70]|Ids|Set<String>|true|false
+09:44:22.22 (24547321)|VARIABLE_ASSIGNMENT|[70]|Ids|[]|0xdf1fb47
+09:44:22.22 (24553513)|STATEMENT_EXECUTE|[71]
+09:44:22.22 (24562489)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+09:44:22.22 (24569803)|STATEMENT_EXECUTE|[72]
+09:44:22.22 (24576330)|HEAP_ALLOCATE|[72]|Bytes:45
+09:44:22.22 (24582048)|VARIABLE_SCOPE_BEGIN|[72]|myQuery|String|false|false
+09:44:22.22 (24593598)|VARIABLE_ASSIGNMENT|[72]|myQuery|"Select Id, Name from (25 more) ..."
+09:44:22.22 (24597585)|STATEMENT_EXECUTE|[73]
+09:44:22.22 (24771963)|SOQL_EXECUTE_BEGIN|[73]|Aggregations:0|Select Id, Name from account Where Id IN :Ids
+09:44:22.22 (24794594)|LIMIT_USAGE|[73]|SOQL|2|100
+09:44:22.22 (24805820)|LIMIT_USAGE|[73]|AGGS|0|300
+09:44:22.22 (27668195)|SOQL_EXECUTE_END|[73]|Rows:1
+09:44:22.22 (27683350)|LIMIT_USAGE|[73]|SOQL_ROWS|2|50000
+09:44:22.22 (27700470)|HEAP_ALLOCATE|[73]|Bytes:8
+09:44:22.22 (27712377)|HEAP_ALLOCATE|[73]|Bytes:58
+09:44:22.22 (27740412)|HEAP_ALLOCATE|[73]|Bytes:8
+09:44:22.22 (27760039)|HEAP_ALLOCATE|[73]|Bytes:12
+09:44:22.22 (27766926)|VARIABLE_SCOPE_BEGIN|[73]|record|SObject|true|false
+09:44:22.22 (27788257)|VARIABLE_ASSIGNMENT|[73]|record|{"Id":"0017F000005oCnsQAE","Name":"University of Arizon (1 more) ..."}|0xd9a9ebc
+09:44:22.22 (27795459)|STATEMENT_EXECUTE|[74]
+09:44:22.22 (27802994)|HEAP_ALLOCATE|[74]|Bytes:55
+09:44:22.22 (27815314)|USER_DEBUG|[74]|DEBUG|myQuery:::Select Id, Name from account Where Id IN :Ids
+09:44:22.22 (27823081)|STATEMENT_EXECUTE|[75]
+09:44:22.22 (27864419)|HEAP_ALLOCATE|[75]|Bytes:59
+09:44:22.22 (27878825)|HEAP_ALLOCATE|[75]|Bytes:68
+09:44:22.22 (27887154)|USER_DEBUG|[75]|DEBUG|record:::Account:{Id=0017F000005oCnsQAE, Name=University of Arizona}
+09:44:22.22 (27894212)|STATEMENT_EXECUTE|[76]
+09:44:22.22 (27900602)|SYSTEM_MODE_EXIT|false
+09:44:22.27 (27917471)|CUMULATIVE_LIMIT_USAGE
+09:44:22.27 (27917471)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+09:44:22.27 (27917471)|TOTAL_EMAIL_RECIPIENTS_QUEUED|0
+09:44:22.27 (27917471)|STATIC_VARIABLE_LIST|
+  int:BYTES:0
+  int:BYTES:0
+  char[]:DigitOnes:0
+  char[]:DigitTens:0
+  Boolean:FALSE:0
+  int:MAX_EXPONENT:0
+  double:MAX_VALUE:0
+  int:MAX_VALUE:0
+  int:MIN_EXPONENT:0
+  double:MIN_NORMAL:0
+  double:MIN_VALUE:0
+  int:MIN_VALUE:0
+  double:NEGATIVE_INFINITY:0
+  double:NaN:0
+  double:POSITIVE_INFINITY:0
+  int:SIZE:0
+  int:SIZE:0
+  Boolean:TRUE:0
+  String:_sfdcAdditionalCodeLocations:0
+  String:_sfdcSuppressedCodeLocations:0
+  char[]:digits:0
+  long:serialVersionUID:0
+  long:serialVersionUID:0
+  long:serialVersionUID:0
+  int[]:sizeTable:0
+
+09:44:22.27 (27917471)|CUMULATIVE_LIMIT_USAGE_END
+
+09:44:22.22 (28006665)|CODE_UNIT_FINISHED|ContactController.lookUp1(String, String)
+09:44:22.22 (28078205)|CODE_UNIT_FINISHED|Aura
+09:44:22.22 (31281527)|EXECUTION_FINISHED
+09:44:22.39 (39488302)|CUMULATIVE_PROFILING_BEGIN
+09:44:22.39 (39488302)|CUMULATIVE_PROFILING|SOQL operations|
+Class.ContactController.lookUp1: line 73, column 1: com.salesforce.api.Database.query(String): executed 2 times in 6 ms
+
+09:44:22.39 (39488302)|CUMULATIVE_PROFILING|No profiling information for SOSL operations
+09:44:22.39 (39488302)|CUMULATIVE_PROFILING|No profiling information for DML operations
+09:44:22.39 (39488302)|CUMULATIVE_PROFILING|method invocations|
+External entry point: public static SObject lookUp1(String, String): executed 1 time in 4 ms
+Class.ContactController.lookUp1: line 70, column 1: public Set<String>(Integer): executed 2 times in 0 ms
+Class.ContactController.lookUp1: line 71, column 1: global public Boolean add(Object): executed 2 times in 0 ms
+Class.ContactController.lookUp1: line 74, column 1: global public static void debug(ANY): executed 2 times in 0 ms
+Class.ContactController.lookUp1: line 75, column 1: public static String valueOf(Object): executed 4 times in 0 ms
+
+09:44:22.39 (39488302)|CUMULATIVE_PROFILING_END

@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 import { LightningElement, track } from 'lwc';
 import saveAccountsLwc from '@salesforce/apex/dynamicRowsController.saveAccountsLwc';
+import getAccounts from '@salesforce/apex/dynamicRowsController.getAccounts';
 
 export default class TestBinding extends LightningElement {
     
@@ -65,5 +66,25 @@ export default class TestBinding extends LightningElement {
                 this.toggleSaveLabel = 'Save';
             }, 3000);
         });
+    }
+
+    handleSelection(event) {
+        let id = event.target.value;
+        console.log("Id", id);
+        console.log("event.target", event.target);
+    }
+
+    connectedCallback() {
+        getAccounts()
+            .then(result => {
+                this.record = result;
+                console.log("lwc getAccounts", this.record);
+                this.myList = result
+                this.error = undefined;
+            })
+            .catch(error => {
+                this.error = error;
+                this.record = undefined;
+            });
     }
 }

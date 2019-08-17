@@ -8,28 +8,31 @@
                 onclick={handleSave}>
             </lightning-button>
         <div class="slds-p-around_x-small">
-                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <table >
                     <thead>
-                          <tr class="slds-line-height_reset">
-                            <th class="" scope="col">
-                              <div class="slds-truncate" title="Account Name">Account Name</div>
+                          <tr>
+                            <th >
+                              <div title="Account Name">Account Name</div>
                             </th>
-                            <th class="" scope="col">
-                              <div class="slds-truncate" title="Industry">Industry</div>
+                            <th>
+                              <div title="Industry">Job Type</div>
+                            </th>
+                            <th>
+                                <div title="Action">Action</div>
                             </th>
                           </tr>
                     </thead>
-                    <tbody>
+                    <!--tbody>
                         <template for:each = {myList} for:item = "item" for:index="indexVar">
                             <tr key={item.key} class="slds-hint-parent">
                                 <td data-label="Prospecting">
                                     <div class="slds-truncate" title="Prospecting">
-                                        <lightning-input data-id={item.key} name="input1" label="Name" value={item.Name} variant="label-inline" onchange={handleNameChange}></lightning-input>
+                                        <lightning-input key={item.key} data-id={item.key} name="input1" label="Name" value={item.Name} variant="label-hidden" onchange={handleNameChange}></lightning-input>
                                     </div>
                                 </td>
                                 <td data-label="Prospecting">
                                     <div class="slds-truncate" title="Prospecting">
-                                        <lightning-input key={item.key} data-id={item.key} name="input1" label="Industry" value={item.Industry} variant="label-inline" onchange={handleIndustryChange}></lightning-input>
+                                        <c-lookup-lwc value-id={item.Id} obj-name="Account" icon-name="standard:account" label-name="Account" onvalueselect={handleSelection}></c-lookup-lwc>
                                     </div>
                                 </td>
                                 <td data-label="Prospecting">
@@ -39,8 +42,37 @@
                                 </td>
                             </tr>
                         </template>
+                    </tbody>-->
+                    <tbody>
+                        <template for:each={myList} for:item="item" for:index="indexVar">
+                            <tr key={item.key}>
+                                <td>
+                                    <div>
+                                        <lightning-input key={item.key} data-id={item.key} name="input1" label="Name" value={item.Name}
+                                            variant="label-hidden" onchange={handleNameChange}></lightning-input>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <c-lookup-lwc value-id={item.Id} obj-name="Account" icon-name="standard:account"
+                                            label-name="Account" onvalueselect={handleSelection}></c-lookup-lwc>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a name={indexVar} onclick={remove}>
+                                        <lightning-icon icon-name="utility:delete" alternative-text="delete" size="small"></lightning-icon>
+                                    </a>
+                                </td>
+                            </tr>
+                        </template>
                     </tbody>
                 </table>
         </div>
 </lightning-card>
+
+<template for:each = {myList} for:item = "item" for:index="indexVar">
+ 
+                <c-lookup-lwc key={item.Id} value-id={item.Id} obj-name="Account" icon-name="standard:account" label-name="Account" onvalueselect={handleSelection}></c-lookup-lwc>
+
+</template>
 </template>

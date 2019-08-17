@@ -1,0 +1,52 @@
+<template>
+    <lightning-card title="Libaries">
+        <div class="slds-p-around_small">
+            <ul>
+                <template for:each={contentWorkspaces.data} for:item="contentWorkspace">
+                    <li key={contentWorkspace.Id}>
+                        <a data-id={contentWorkspace.Id} onclick={callGetFiles}>{contentWorkspace.Name}</a>
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </lightning-card>
+
+    <template if:true={isopen}>
+        <div style="height:640px">
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium"
+                aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close">
+                            <lightning-button-icon icon-name="utility:close" size="large" variant="bare-inverse" onclick={closeModal}></lightning-button-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Files</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <ul class="slds-has-dividers_bottom slds-has-block-links_space">
+                            <template for:each={files} for:item="file">
+                                <li key={file.Id} class="slds-item">
+                                    <div class="slds-media slds-listbox__option slds-listbox__option_entity slds-media_small slds-p-top_small" role="option">
+                                        <span class="slds-media__figure slds-listbox__option-icon">
+                                            <span class="slds-icon_container">
+                                                <lightning-icon icon-name="doctype:attachment" alternative-text="" size="small" ></lightning-icon>
+                                            </span>
+                                        </span>
+                                        <span class="slds-media__body">
+                                            <a key={file.Id} data-id={file.Id} onclick={openFile}>
+                                                {file.Title}
+                                            </a>
+                                        </span>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </template>
+</template>

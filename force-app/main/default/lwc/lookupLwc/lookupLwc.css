@@ -1,0 +1,7 @@
+.pillSize{
+    width : 100%
+}
+
+:host {
+    display: block;
+}

@@ -1,0 +1,52 @@
+<template>
+    <div>
+        <div class="slds-form-element">
+
+            
+
+            <div class="slds-form-element__control">
+                <div class="slds-combobox_container">
+                    <div id="box" class={boxClass} aria-expanded="true" aria-haspopup="listbox" role="combobox">
+                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                            <template if:true={isValue}>
+                                <div id="lookup-pill" class="slds-pill-container">
+                                    <lightning-pill class="pillSize" label={valueObj} name={valueObj} onremove={handleRemovePill} href={href}>
+                                        <lightning-icon icon-name={iconName} alternative-text="acc" ></lightning-icon>
+                                    </lightning-pill>
+                                </div>
+                            </template>
+                            <template if:false={isValue}>
+                                <div class="slds-p-top_none">
+                                    <lightning-input class={inputClass} type="search" id="input" value={searchTerm}
+                                        onclick={handleClick} onblur={inblur} onchange={onChange}
+                                        variant="label-hidden" autocomplete="off" placeholder="Search...">
+                                    </lightning-input>
+                                </div>
+                            </template>
+                        </div>
+                        <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+                            <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                <template for:each={options} for:item="item">
+                                    <li key={item.Id} onclick={onSelect} data-id={item.Id} role="presentation">
+                                        <span class="slds-lookup__item-action slds-lookup__item-action--label" role="option">
+                                            <lightning-icon class="slds-icon slds-icon--small slds-icon-text-default" icon-name={iconName} alternative-text={objName} size="small"></lightning-icon>
+                                            <span class="slds-truncate">{item.Name}</span>
+                                        </span>
+                                    </li>
+                                </template>
+                                <template if:true={createRecord}>
+                                    <li onclick={createRecord} role="presentation">
+                                        <span class="slds-lookup__item-action slds-lookup__item-action--label" id="lookup-option-370" role="option">
+                                            <lightning-button-icon class="slds-icon slds-icon--small slds-icon-text-default" icon-name="utility:add" variant="bare" size="small"></lightning-button-icon>
+                                            <span class="slds-truncate">New {objName}</span>
+                                        </span>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
