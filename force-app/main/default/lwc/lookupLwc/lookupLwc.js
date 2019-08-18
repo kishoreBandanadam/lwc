@@ -4,7 +4,7 @@ import lookUp2 from '@salesforce/apex/ContactController.lookUp2';
 import { getRecord } from 'lightning/uiRecordApi';
 
 
-let FIELDS = ['Account.Name'];
+let FIELDS = ['JobType__c.Name'];
 
 export default class LookupLwc extends LightningElement {
 
@@ -64,8 +64,9 @@ export default class LookupLwc extends LightningElement {
             this.record = data;
             this.error = undefined;
             this.valueObj = this.record.fields.Name.value;
-            this.href = '/'+this.record.fields.id;
+            this.href = '/'+this.record.id;
             this.isValue = true;
+            console.log("this.href", this.href);
             console.log("this.record", JSON.stringify(this.record));
         } else if (error) {
             this.error = error;

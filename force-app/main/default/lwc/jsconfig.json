@@ -107,6 +107,12 @@
             ],
             "c/zomatoDisplayRestaurants": [
                 "zomatoDisplayRestaurants/zomatoDisplayRestaurants.js"
+            ],
+            "c/testsinglecomponent": [
+                "testsinglecomponent/testsinglecomponent.js"
+            ],
+            "c/stencilLwc": [
+                "stencilLwc/stencilLwc.js"
             ]
         }
     },

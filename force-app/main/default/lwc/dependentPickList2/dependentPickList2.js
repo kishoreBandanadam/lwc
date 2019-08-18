@@ -27,8 +27,6 @@ export default class DependentPickList2 extends LightningElement {
             this.value = { label: '--None--', value: "" }.value;
         else
             this.value = val;
-
-        this.value = val;
     }
 
     @api
@@ -37,11 +35,11 @@ export default class DependentPickList2 extends LightningElement {
         return this.controllingFieldVal;
     }
     set controllingFieldValue(value) {
-        if ((this.controllingFieldVal !== value && this.previousValue === this.selectedValue) ) {
+        if ((this.controllingFieldVal !== value && this.previousValue === this.selectedValue || (this.controllingFieldVal === '' && this.previousValue !== this.selectedValue))) {
             console.log("etter null");
             let opt = [{ label: '--None--', value: "" }];
-            this.value = opt[0].value;
-            let selectedValue = this.value;
+            //this.value = opt[0].value;
+            let selectedValue = opt[0].value;
             const pickValueChangeEvent = new CustomEvent('picklistchange', {
                 detail: { selectedValue },
             });

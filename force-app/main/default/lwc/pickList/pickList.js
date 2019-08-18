@@ -5,13 +5,17 @@ import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
 export default class PickList extends LightningElement {
     
-    @api objectApiName = undefined;
-    @api recordTypeId = undefined;
-    @api pickListfieldApiName = undefined;
-    @api label = undefined;
-    @api variant = undefined;
+    @api objectApiName;
+    @api recordTypeId;
+    @api pickListfieldApiName;
+    @api label;
+    @api variant;
+
+    //only for lwc for mapping values in list
+    @api uniqueKey;
+
     //@api selectedValue = undefined;
-    @track value = '';
+    @track value;
 
     @api 
     get selectedValue() {
@@ -85,10 +89,11 @@ export default class PickList extends LightningElement {
         console.log("event.target.value",event.target.value);
         console.log("this.value",this.value);
         let selectedValue = this.value;
+        let key = this.uniqueKey;
 
         //Firing change event for aura container to handle
         const pickValueChangeEvent = new CustomEvent('picklistchange', {
-            detail: { selectedValue },
+            detail: { selectedValue, key },
         });
         this.dispatchEvent(pickValueChangeEvent);
     }

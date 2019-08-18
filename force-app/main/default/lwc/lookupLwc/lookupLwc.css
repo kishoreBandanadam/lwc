@@ -2,6 +2,7 @@
     width : 100%
 }
 
-:host {
-    display: block;
-}
+
+/*.slds-modal__content{
+    overflow: initial;
+}*/

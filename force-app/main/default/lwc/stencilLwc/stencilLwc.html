@@ -1,0 +1,34 @@
+<template>
+    <template if:true={double}>
+        <table class="table slds-table slds-table_bordered slds-no-row-hover slds-table_col-bordered">
+            <tbody class="tbody">
+                <template for:each={opacities} for:item="opacity">
+                    <tr key={opacity} style={opacity}>
+                        <template for:each={columns} for:item="col">
+                            <td key={col} class="stencil">
+                                <div></div>
+                                <div class="row"></div>
+                            </td>
+                        </template>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </template>
+
+    <template if:false={double}>
+        <table class="table slds-table slds-table_bordered slds-no-row-hover slds-table_col-bordered">
+            <tbody class="tbody">
+                <template for:each={opacities} for:item="opacity">
+                    <tr key={opacity} style={opacity}>
+                        <template for:each={columns} for:item="col">
+                            <td key={col} class="stencil">
+                                <div class="row"></div>
+                            </td>
+                        </template>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </template>
+</template>

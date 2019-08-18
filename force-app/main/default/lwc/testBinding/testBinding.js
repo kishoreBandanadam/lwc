@@ -7,26 +7,57 @@ import getAccounts from '@salesforce/apex/dynamicRowsController.getAccounts';
 export default class TestBinding extends LightningElement {
     
     @track toggleSaveLabel = 'Save';
-    @track myList = [{Name : "Kishore", Industry : "Birlasoft", key : Math.random().toString(36).substring(2, 15)},
-                     {Name : "Suresh", Industry : "TCS",  key : Math.random().toString(36).substring(2, 15)}];
+    @track myList = [{Name : "Kishore", JobType__c : "Birlasoft", key : Math.random().toString(36).substring(2, 15)},
+                     {Name : "Suresh", JobType__c : "TCS",  key : Math.random().toString(36).substring(2, 15)}];
 
+    //For Stencil
+    @track stencilClass = '';
+    @track stencilReplacement = 'slds-hide';  
+    
+    @track cols = [1,2,3,4];
+    @track opacs = ['opacity: 1', 'opacity: 0.9', 'opacity: 0.8', 'opacity: 0.7', 'opacity: 0.6', 'opacity: 0.5', 'opacity: 0.4', 'opacity: 0.3', 'opacity: 0.2', 'opacity: 0.1'];
+
+
+    /*--------------------Mapping field values to the list onchange START --------------------*/                
     handleNameChange(event) {
-        let element = this.myList.find(ele  => ele.key === event.target.dataset.id);
+        let element = this.myList.find(ele  => ele.Id === event.target.dataset.id);
         element.Name = event.target.value;
         this.myList = [...this.myList];
         console.log(JSON.stringify(this.myList));
     }
 
-    handleIndustryChange(event) {
-        let element = this.myList.find(ele  => ele.key === event.target.dataset.id);
-        element.Industry = event.target.value;
+    handlePicklistChange(event) {
+        let eventData = event.detail;
+        let pickValue = event.detail.selectedValue;
+        let uniqueKey = event.detail.key;
+        console.log("Id detail", pickValue);
+        console.log("uniqueKey detail", uniqueKey);
+        console.log("eventData", eventData);
+
+        let element = this.myList.find(ele  => ele.Id === uniqueKey);
+        element.Controlling_Picklist__c = pickValue;
         this.myList = [...this.myList];
-        console.log(JSON.stringify(this.myList));
+        console.log("myList after select", JSON.stringify(this.myList));
     }
+
+    handleSelection(event) {
+        let eventData = event.detail;
+        let id = event.detail.selectedId;
+        let uniqueKey = event.detail.key;
+        console.log("Id detail", id);
+        console.log("uniqueKey detail", uniqueKey);
+        console.log("eventData", eventData);
+
+        let element = this.myList.find(ele  => ele.Id === uniqueKey);
+        element.JobType__c = id;
+        this.myList = [...this.myList];
+        console.log("myList after select", JSON.stringify(this.myList));
+    }
+    /*--------------------Mapping field values to the list onchange END --------------------*/    
 
     add() {
         let newList = this.myList;
-        newList.push({Name : "", Industry : "",  key : Math.random().toString(36).substring(2, 15)});
+        newList.push({Name : "", JobType__c : "",  key : Math.random().toString(36).substring(2, 15)});
         this.myList = newList;
         console.log('myList', JSON.stringify(this.myList));
         console.log('myList size::',this.myList.length);
@@ -53,7 +84,7 @@ export default class TestBinding extends LightningElement {
         saveAccountsLwc({records : toSaveList})
         .then(() => {
             this.toggleSaveLabel = 'Saved';
-            this.myList = [{Name : "", Industry : "",  key : Math.random().toString(36).substring(2, 15)}];
+            //this.myList = [{Name : "", Industry : "",  key : Math.random().toString(36).substring(2, 15)}];
             this.error = undefined;
         })
         .catch(error => {
@@ -68,12 +99,6 @@ export default class TestBinding extends LightningElement {
         });
     }
 
-    handleSelection(event) {
-        let id = event.target.value;
-        console.log("Id", id);
-        console.log("event.target", event.target);
-    }
-
     connectedCallback() {
         getAccounts()
             .then(result => {
@@ -81,6 +106,10 @@ export default class TestBinding extends LightningElement {
                 console.log("lwc getAccounts", this.record);
                 this.myList = result
                 this.error = undefined;
+
+                //Removing stencil on getting data
+                this.stencilClass = 'slds-hide';
+                this.stencilReplacement = '';
             })
             .catch(error => {
                 this.error = error;

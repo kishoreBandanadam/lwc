@@ -7,72 +7,74 @@
                 slot="actions"
                 onclick={handleSave}>
             </lightning-button>
-        <div class="slds-p-around_x-small">
-                <table >
-                    <thead>
-                          <tr>
-                            <th >
-                              <div title="Account Name">Account Name</div>
-                            </th>
-                            <th>
-                              <div title="Industry">Job Type</div>
-                            </th>
-                            <th>
-                                <div title="Action">Action</div>
-                            </th>
-                          </tr>
-                    </thead>
-                    <!--tbody>
-                        <template for:each = {myList} for:item = "item" for:index="indexVar">
-                            <tr key={item.key} class="slds-hint-parent">
-                                <td data-label="Prospecting">
-                                    <div class="slds-truncate" title="Prospecting">
-                                        <lightning-input key={item.key} data-id={item.key} name="input1" label="Name" value={item.Name} variant="label-hidden" onchange={handleNameChange}></lightning-input>
-                                    </div>
-                                </td>
-                                <td data-label="Prospecting">
-                                    <div class="slds-truncate" title="Prospecting">
-                                        <c-lookup-lwc value-id={item.Id} obj-name="Account" icon-name="standard:account" label-name="Account" onvalueselect={handleSelection}></c-lookup-lwc>
-                                    </div>
-                                </td>
-                                <td data-label="Prospecting">
-                                    <a name={indexVar} onclick={remove}>
-                                            <lightning-icon icon-name="utility:delete" alternative-text="delete"  size="small"></lightning-icon>
-                                    </a>
-                                </td>
-                            </tr>
-                        </template>
-                    </tbody>-->
-                    <tbody>
-                        <template for:each={myList} for:item="item" for:index="indexVar">
-                            <tr key={item.key}>
-                                <td>
-                                    <div>
-                                        <lightning-input key={item.key} data-id={item.key} name="input1" label="Name" value={item.Name}
-                                            variant="label-hidden" onchange={handleNameChange}></lightning-input>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <c-lookup-lwc value-id={item.Id} obj-name="Account" icon-name="standard:account"
-                                            label-name="Account" onvalueselect={handleSelection}></c-lookup-lwc>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a name={indexVar} onclick={remove}>
-                                        <lightning-icon icon-name="utility:delete" alternative-text="delete" size="small"></lightning-icon>
-                                    </a>
-                                </td>
-                            </tr>
-                        </template>
-                    </tbody>
-                </table>
+
+            <!-- Using Stencil -->
+        <div id="stencil" class={stencilClass}>
+            <c-stencil-lwc columns={cols} opacities={opacs}></c-stencil-lwc>
         </div>
+
+        <div id="stencilReplacement" class={stencilReplacement}>
+        <div class="slds-p-around_x-small">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                        <th class="slds-size_3-of-10" scope="col">
+                            <div class="slds-truncate" title="Account Name">Account Name</div>
+                        </th>
+                        <th class="slds-size_3-of-10" scope="col">
+                            <div class="slds-truncate" title="Control">Control</div>
+                        </th>
+                        <th class="slds-size_3-of-10" scope="col">
+                            <div class="slds-truncate" title="Job Type">Job Type</div>
+                        </th>
+                        <th class="slds-size_1-of-10" scope="col">
+                            <div class="slds-truncate" title="Action">Action</div>
+                        </th>
+                        </tr>
+                    </thead>
+                <tbody>
+                    <template for:each = {myList} for:item = "item" for:index="indexVar">
+                        <tr key={item.key} class="slds-hint-parent">
+                            <td class="slds-size_3-of-10" data-label="Prospecting">
+                                <div class="slds-truncate" title="Prospecting">
+                                    <lightning-input key={item.key} data-id={item.Id} name="input1" label="Name" value={item.Name} variant="label-hidden" onchange={handleNameChange}></lightning-input>
+                                </div>
+                            </td>
+                            <td class="slds-size_3-of-10" data-label="Prospecting">
+                                <div  title="Prospecting">
+                                    <c-pick-list 
+                                        unique-key={item.Id} 
+                                        object-api-name="Account" 
+                                        record-type-id="0127F000000kyxEQAQ" 
+                                        selected-value={item.Controlling_Picklist__c}  
+                                        pick-listfield-api-name="Controlling_Picklist__c" 
+                                        variant="label-hidden"
+                                        onpicklistchange={handlePicklistChange}>
+                                    </c-pick-list>
+                                </div>
+                            </td>
+                            <td class="slds-size_3-of-10" data-label="Prospecting">
+                                <div  title="Prospecting">
+                                    <c-lookup-lwc 
+                                        unique-key={item.Id} 
+                                        value-id={item.JobType__c} 
+                                        obj-name="JobType__c" 
+                                        icon-name="custom:custom85" 
+                                        label-name="JobType" 
+                                        onvalueselect={handleSelection}>
+                                    </c-lookup-lwc>
+                                </div>
+                            </td>
+                            <td class="slds-size_1-of-10" data-label="Prospecting">
+                                <a name={indexVar} onclick={remove}>
+                                        <lightning-icon icon-name="utility:delete" alternative-text="delete"  size="small"></lightning-icon>
+                                </a>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </lightning-card>
-
-<template for:each = {myList} for:item = "item" for:index="indexVar">
- 
-                <c-lookup-lwc key={item.Id} value-id={item.Id} obj-name="Account" icon-name="standard:account" label-name="Account" onvalueselect={handleSelection}></c-lookup-lwc>
-
-</template>
 </template>
