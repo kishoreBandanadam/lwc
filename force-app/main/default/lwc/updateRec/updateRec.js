@@ -49,6 +49,16 @@ export default class UpdateRec extends LightningElement {
         this.account.Phone = event.target.value;
     }
 
+    handlePicklistChange(event) {
+        this.account.Controlling_Picklist__c = event.detail.selectedValue;
+    }
+
+    handleDependentPicklistChange(event) {
+        this.account.Dependent_Picklist__c = event.detail.selectedValue;
+    }
+
+
+
     handleClick() {
         console.log("Account record after edit::", this.account);
         updateAcc({acc : this.account})

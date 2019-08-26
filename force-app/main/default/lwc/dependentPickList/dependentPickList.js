@@ -5,14 +5,24 @@ import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
 export default class DependentPickList extends LightningElement {
 
-    @api objectApiName = undefined;
-    @api recordTypeId = undefined;
-    @api pickListfieldApiName = undefined;
+    @api objectApiName;
+    recordTypeIdValue;
+    @api pickListfieldApiName;
     @api controllingFieldValue;
-    @api label = undefined;
+    @api label;
+
+    @api 
+    get recordTypeId() {
+        console.log("getter defaultRectype", this.recordTypeIdValue);
+        return this.recordTypeIdValue;
+    }
+    set recordTypeId(value) {
+        this.recordTypeIdValue = value;
+        console.log("setter defaultRectype", this.recordTypeIdValue);
+    }
     //@api selectedValue = undefined;
     previousValue;
-    @track value = undefined;
+    @track value;
 
     @api 
     get selectedValue() {
@@ -21,9 +31,7 @@ export default class DependentPickList extends LightningElement {
     }
     set selectedValue(val) {
         console.log("setter dependent", val);
-
             this.value = val;
-   
     }
     
     @track options = [
@@ -40,7 +48,7 @@ export default class DependentPickList extends LightningElement {
             this.record = data;
             this.error = undefined;
             if(this.recordTypeId === undefined){
-                //this.recordTypeId = this.record.defaultRecordTypeId;
+                this.recordTypeId = this.record.defaultRecordTypeId;
             }
             console.log("Default Record Type Id", this.record.defaultRecordTypeId);
         } else if (error) {

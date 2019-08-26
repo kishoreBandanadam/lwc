@@ -36,6 +36,9 @@
             "c/dependentPickList2": [
                 "dependentPickList2/dependentPickList2.js"
             ],
+            "c/dependentPicklist3": [
+                "dependentPicklist3/dependentPicklist3.js"
+            ],
             "c/dynamic": [
                 "dynamic/dynamic.js"
             ],
@@ -84,8 +87,14 @@
             "c/recordStyle": [
                 "recordStyle/recordStyle.js"
             ],
+            "c/stencilLwc": [
+                "stencilLwc/stencilLwc.js"
+            ],
             "c/testBinding": [
                 "testBinding/testBinding.js"
+            ],
+            "c/testsinglecomponent": [
+                "testsinglecomponent/testsinglecomponent.js"
             ],
             "c/updateRec": [
                 "updateRec/updateRec.js"
@@ -107,12 +116,6 @@
             ],
             "c/zomatoDisplayRestaurants": [
                 "zomatoDisplayRestaurants/zomatoDisplayRestaurants.js"
-            ],
-            "c/testsinglecomponent": [
-                "testsinglecomponent/testsinglecomponent.js"
-            ],
-            "c/stencilLwc": [
-                "stencilLwc/stencilLwc.js"
             ]
         }
     },

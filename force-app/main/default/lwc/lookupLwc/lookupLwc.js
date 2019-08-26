@@ -1,8 +1,11 @@
 /* eslint-disable no-console */
-import { LightningElement, api, track, wire } from 'lwc';
-import lookUp2 from '@salesforce/apex/ContactController.lookUp2';
-import { getRecord } from 'lightning/uiRecordApi';
+/* eslint-disable @lwc/lwc/no-async-operation */
 
+import lookUp2 from '@salesforce/apex/ContactController.lookUp2';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { getObjectInfo } from 'lightning/uiObjectInfoApi';
+import { getRecord } from 'lightning/uiRecordApi';
+import { api, LightningElement, track, wire } from 'lwc';
 
 let FIELDS = ['JobType__c.Name'];
 
@@ -16,6 +19,27 @@ export default class LookupLwc extends LightningElement {
     @api filter = '';
     @api showLabel = false;
     @api uniqueKey;
+    objLabelName;
+
+    /*Create Record Start*/
+    @api createRecord;
+    @track recordTypeOptions;
+    @track createRecordOpen;
+    @track recordTypeSelector;
+    @track mainRecord;
+    @track isLoaded = false;
+
+    //stencil
+    @track cols = [1,2];
+    @track opacs = ['opacity: 1', 'opacity: 0.9', 'opacity: 0.8', 'opacity: 0.7', 'opacity: 0.6', 'opacity: 0.5', 'opacity: 0.4', 'opacity: 0.3', 'opacity: 0.2', 'opacity: 0.1'];
+    @track double = true;
+
+    //For Stencil
+    @track stencilClass = '';
+    @track stencilReplacement = 'slds-hide';  
+    //css
+    @track myPadding = 'slds-modal__content';
+    /*Create Record End*/
 
     searchTerm;
     @track valueObj;
@@ -37,11 +61,58 @@ export default class LookupLwc extends LightningElement {
         console.log("FIELDS", FIELDS);
     }
     renderedCallback() {
-
+        if(this.objName) {
+            let temp = this.objName;
+            if(temp.includes('__c')){
+                let newObjName = temp.replace(/__c/g,"");
+                if(newObjName.includes('_')) {
+                    let vNewObjName = newObjName.replace(/_/g," ");
+                    this.objLabelName = vNewObjName;
+                }else {
+                    this.objLabelName = newObjName;
+                }
+                
+            }else {
+                this.objLabelName = this.objName;
+            }
+        }
 
         console.log("In rendered", this.objName);
     }
-    
+
+    //Used for creating Record Start
+    @wire(getObjectInfo, { objectApiName: '$objName' })
+    wiredObjectInfo({ error, data }) {
+        if (data) {
+            this.record = data;
+            this.error = undefined;
+
+            let recordTypeInfos = Object.entries(this.record.recordTypeInfos);
+            console.log("ObjectInfo length", recordTypeInfos.length);
+            if (recordTypeInfos.length > 1) {
+                let temp = [];
+                recordTypeInfos.forEach(([key, value]) => {
+                    console.log(key);
+                    if (value.available === true && value.master !== true) {
+                        console.log("Inside ifff",JSON.stringify(key,value));
+                        
+                        temp.push({"label" : value.name, "value" : value.recordTypeId});
+                    }
+                });
+                this.recordTypeOptions = temp;
+                console.log("recordTypeOptions", this.recordTypeOptions);
+            } else {
+                this.recordTypeId = this.record.defaultRecordTypeId;
+            }
+
+            console.log("this.recordTypeOptions", JSON.stringify(this.recordTypeOptions));
+        } else if (error) {
+            this.error = error;
+            this.record = undefined;
+            console.log("this.error", this.error);
+        }
+    }
+    //Used for creating Record End
 
     @wire(lookUp2, {searchTerm : '$searchTerm', myObject : '$objName', filter : '$filter'})
     wiredRecords({ error, data }) {
@@ -49,7 +120,7 @@ export default class LookupLwc extends LightningElement {
             this.record = data;
             this.error = undefined;
             this.options = this.record;
-            console.log("this.options", JSON.stringify(this.options));
+            console.log("common this.options", JSON.stringify(this.options));
         } else if (error) {
             this.error = error;
             this.record = undefined;
@@ -129,5 +200,90 @@ export default class LookupLwc extends LightningElement {
             detail: { selectedId, key },
         });
         this.dispatchEvent(valueSelectedEvent);
+    }
+
+    createRecordFunc() {
+        if (this.recordTypeOptions) {
+            this.recordTypeSelector = true;
+        }else {
+            this.recordTypeSelector = false;
+            this.mainRecord = true;
+            //stencil before getting data
+            this.stencilClass = '';
+            this.stencilReplacement = 'slds-hide';
+        }
+        this.createRecordOpen = true;
+    }
+
+    handleRecTypeChange(event) {
+        console.log("In handleRecTypeChange", event.target.value);
+        this.recordTypeId = event.target.value;
+    }
+
+    createRecordMain() {
+        this.recordTypeSelector = false;
+        this.mainRecord = true;
+        //stencil before getting data
+        this.stencilClass = '';
+        this.stencilReplacement = 'slds-hide';
+    }
+
+    handleLoad(event) {
+        let details = event.detail;
+
+        if(details) {
+            setTimeout(() => {
+                this.stencilClass = 'slds-hide';
+                this.stencilReplacement = '';
+                this.myPadding = 'slds-p-around_medium slds-modal__content';
+            }, 1000);
+        }
+
+    }
+
+    handleSubmit() {
+        this.template.querySelector('lightning-record-form').submit();
+    }
+
+    handleSuccess(event) {
+ 
+        this.createRecordOpen = false;
+        this.mainRecord = false;
+        this.stencilClass = '';
+        this.stencilReplacement = 'slds-hide';
+
+        let selectedId = event.detail.id;
+        let key = this.uniqueKey;
+        const valueSelectedEvent = new CustomEvent('valueselect', {
+            detail: { selectedId, key },
+        });
+        this.dispatchEvent(valueSelectedEvent);
+
+        this.dispatchEvent(
+            new ShowToastEvent({
+                title : 'Success',
+                message : `Record saved successfully with id: ${event.detail.id}`,
+                variant : 'success',
+            }),
+        )
+    }
+
+    handleError() {
+
+        this.dispatchEvent(
+            new ShowToastEvent({
+                title : 'Error',
+                message : 'Error saving the record',
+                variant : 'error',
+            }),
+        )
+    }
+
+    closeModal() {
+        this.stencilClass = '';
+        this.stencilReplacement = 'slds-hide';
+        this.createRecordOpen = false;
+        this.recordTypeSelector = false;
+        this.mainRecord = false;
     }
 }

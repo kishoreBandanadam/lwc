@@ -1,6 +1,6 @@
 <template>
     <template if:true={double}>
-        <table class="table slds-table slds-table_bordered slds-no-row-hover slds-table_col-bordered">
+        <table class="table slds-table slds-table_bordered slds-no-row-hover">
             <tbody class="tbody">
                 <template for:each={opacities} for:item="opacity">
                     <tr key={opacity} style={opacity}>
@@ -17,7 +17,8 @@
     </template>
 
     <template if:false={double}>
-        <table class="table slds-table slds-table_bordered slds-no-row-hover slds-table_col-bordered">
+        <!--<table class="table slds-table slds-table_bordered slds-no-row-hover slds-table_col-bordered">-->
+        <table class="table slds-table slds-table_bordered slds-no-row-hover">
             <tbody class="tbody">
                 <template for:each={opacities} for:item="opacity">
                     <tr key={opacity} style={opacity}>

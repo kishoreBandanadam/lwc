@@ -3,6 +3,7 @@
 import { LightningElement, track } from 'lwc';
 import saveAccountsLwc from '@salesforce/apex/dynamicRowsController.saveAccountsLwc';
 import getAccounts from '@salesforce/apex/dynamicRowsController.getAccounts';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class TestBinding extends LightningElement {
     
@@ -36,6 +37,20 @@ export default class TestBinding extends LightningElement {
 
         let element = this.myList.find(ele  => ele.Id === uniqueKey);
         element.Controlling_Picklist__c = pickValue;
+        this.myList = [...this.myList];
+        console.log("myList after select", JSON.stringify(this.myList));
+    }
+
+    handleDependentPicklistChange(event) {
+        let eventData = event.detail;
+        let pickValue = event.detail.selectedValue;
+        let uniqueKey = event.detail.key;
+        console.log("Id detail", pickValue);
+        console.log("uniqueKey detail", uniqueKey);
+        console.log("eventData", eventData);
+
+        let element = this.myList.find(ele  => ele.Id === uniqueKey);
+        element.Dependent_Picklist__c = pickValue;
         this.myList = [...this.myList];
         console.log("myList after select", JSON.stringify(this.myList));
     }
@@ -80,11 +95,18 @@ export default class TestBinding extends LightningElement {
         });
 
         this.myList = toSaveList;
-
+        console.log("Final record list to save testBinding", this.myList);
         saveAccountsLwc({records : toSaveList})
         .then(() => {
             this.toggleSaveLabel = 'Saved';
             //this.myList = [{Name : "", Industry : "",  key : Math.random().toString(36).substring(2, 15)}];
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title : 'Success',
+                    message : `Records saved succesfully!`,
+                    variant : 'success',
+                }),
+            )
             this.error = undefined;
         })
         .catch(error => {

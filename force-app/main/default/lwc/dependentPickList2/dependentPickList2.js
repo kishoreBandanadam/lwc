@@ -5,14 +5,28 @@ import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 
 export default class DependentPickList2 extends LightningElement {
 
-    @api objectApiName = undefined;
-    @api recordTypeId = undefined;
-    @api pickListfieldApiName = undefined;
-    controllingFieldVal;
-    @api label = undefined;
+    @api objectApiName;
+    @api pickListfieldApiName;
+    @api label;
     @api variant;
+
+    recordTypeIdValue;
+    controllingFieldVal;
     previousValue;
-    @track value = undefined;
+    @track value;
+
+    //only for lwc for mapping values in list
+    @api uniqueKey;
+
+    @api 
+    get recordTypeId() {
+        console.log("getter defaultRectype", this.recordTypeIdValue);
+        return this.recordTypeIdValue;
+    }
+    set recordTypeId(value) {
+        this.recordTypeIdValue = value;
+        console.log("setter defaultRectype", this.recordTypeIdValue);
+    }
 
     @api 
     get selectedValue() {
@@ -23,8 +37,9 @@ export default class DependentPickList2 extends LightningElement {
         console.log("setter dependent", val);
         this.previousValue = this.value;
 
-        if (val === '' || val === undefined || val === null)
+        if (val === '' || val === undefined || val === null){
             this.value = { label: '--None--', value: "" }.value;
+        }
         else
             this.value = val;
     }
@@ -35,13 +50,14 @@ export default class DependentPickList2 extends LightningElement {
         return this.controllingFieldVal;
     }
     set controllingFieldValue(value) {
-        if ((this.controllingFieldVal !== value && this.previousValue === this.selectedValue || (this.controllingFieldVal === '' && this.previousValue !== this.selectedValue))) {
+        if ((this.controllingFieldVal !== undefined && this.controllingFieldVal !== value && this.previousValue === this.selectedValue || (this.controllingFieldVal === '' && this.previousValue !== this.selectedValue))) {
             console.log("etter null");
             let opt = [{ label: '--None--', value: "" }];
             //this.value = opt[0].value;
             let selectedValue = opt[0].value;
+            let key = this.uniqueKey;
             const pickValueChangeEvent = new CustomEvent('picklistchange', {
-                detail: { selectedValue },
+                detail: { selectedValue, key },
             });
             this.dispatchEvent(pickValueChangeEvent);
 
@@ -65,7 +81,7 @@ export default class DependentPickList2 extends LightningElement {
             this.record = data;
             this.error = undefined;
             if(this.recordTypeId === undefined){
-                //this.recordTypeId = this.record.defaultRecordTypeId;
+                this.recordTypeId = this.record.defaultRecordTypeId;
             }
             console.log("Default Record Type Id", this.record.defaultRecordTypeId);
         } else if (error) {
@@ -149,10 +165,10 @@ export default class DependentPickList2 extends LightningElement {
         console.log("event.target.value",event.target.value);
         console.log("this.value",this.value);
         let selectedValue = this.value;
-
+        let key = this.uniqueKey;
         //Firing change event for aura container to handle
         const pickValueChangeEvent = new CustomEvent('picklistchange', {
-            detail: { selectedValue },
+            detail: { selectedValue, key },
         });
         this.dispatchEvent(pickValueChangeEvent);
     }
@@ -166,7 +182,9 @@ export default class DependentPickList2 extends LightningElement {
             let tempOptions = [{ label: '--None--', value: "" }];
             if (this.controllingFieldValue !== null && this.controllingFieldValue !== undefined && this.controllingFieldValue !== '') {
                 console.log("this.controllingFieldValue", this.controllingFieldValue);
-                this.myMap.get(this.controllingFieldValue).forEach(opt => tempOptions.push(opt));
+                if(this.myMap.get(this.controllingFieldValue)) {
+                    this.myMap.get(this.controllingFieldValue).forEach(opt => tempOptions.push(opt));
+                }
             }
             this.options = tempOptions;
         }

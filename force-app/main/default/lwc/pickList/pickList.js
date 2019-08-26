@@ -6,10 +6,21 @@ import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 export default class PickList extends LightningElement {
     
     @api objectApiName;
-    @api recordTypeId;
     @api pickListfieldApiName;
     @api label;
     @api variant;
+
+    recordTypeIdValue;
+    
+    @api 
+    get recordTypeId() {
+        console.log("getter defaultRectype", this.recordTypeIdValue);
+        return this.recordTypeIdValue;
+    }
+    set recordTypeId(value) {
+        this.recordTypeIdValue = value;
+        console.log("setter defaultRectype", this.recordTypeIdValue);
+    }
 
     //only for lwc for mapping values in list
     @api uniqueKey;
@@ -43,9 +54,9 @@ export default class PickList extends LightningElement {
             this.record = data;
             this.error = undefined;
             if(this.recordTypeId === undefined){
-                //this.recordTypeId = this.record.defaultRecordTypeId;
+                this.recordTypeId = this.record.defaultRecordTypeId;
             }
-            console.log("Default Record Type Id", this.record.defaultRecordTypeId);
+            console.log("Default Record Type Id", JSON.stringify(this.record.defaultRecordTypeId));
         } else if (error) {
             this.error = error;
             this.record = undefined;
@@ -85,10 +96,10 @@ export default class PickList extends LightningElement {
 
 
     handleChange(event) {
-        this.value = event.target.value;
+        let tempValue = event.target.value;
         console.log("event.target.value",event.target.value);
-        console.log("this.value",this.value);
-        let selectedValue = this.value;
+        console.log("this.value",tempValue);
+        let selectedValue = tempValue;
         let key = this.uniqueKey;
 
         //Firing change event for aura container to handle
