@@ -1,0 +1,32 @@
+.button{
+    width : 100%;
+}
+
+
+*{padding:0;margin:0;}
+
+a{
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:18px;
+    background-color:#CCC;
+}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#009EDB;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 9000;
+    margin-bottom: 40px;
+}
+
+
+.my-float{
+	margin-top:22px;
+}

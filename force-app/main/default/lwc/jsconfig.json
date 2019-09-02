@@ -12,8 +12,14 @@
             "c/conditionalRendering": [
                 "conditionalRendering/conditionalRendering.js"
             ],
+            "c/contactDetail": [
+                "contactDetail/contactDetail.js"
+            ],
             "c/contentWorkspaceCustom": [
                 "contentWorkspaceCustom/contentWorkspaceCustom.js"
+            ],
+            "c/corousal": [
+                "corousal/corousal.js"
             ],
             "c/createRec": [
                 "createRec/createRec.js"
@@ -35,6 +41,9 @@
             ],
             "c/dependentPickList2": [
                 "dependentPickList2/dependentPickList2.js"
+            ],
+            "c/dependentPickList4": [
+                "dependentPickList4/dependentPickList4.js"
             ],
             "c/dependentPicklist3": [
                 "dependentPicklist3/dependentPicklist3.js"
@@ -60,8 +69,17 @@
             "c/getterAndSetters": [
                 "getterAndSetters/getterAndSetters.js"
             ],
+            "c/illustration": [
+                "illustration/illustration.js"
+            ],
+            "c/illustration2": [
+                "illustration2/illustration2.js"
+            ],
             "c/ldsUtils": [
                 "ldsUtils/ldsUtils.js"
+            ],
+            "c/leadForm": [
+                "leadForm/leadForm.js"
             ],
             "c/lookupLwc": [
                 "lookupLwc/lookupLwc.js"
@@ -81,6 +99,9 @@
             "c/pickList": [
                 "pickList/pickList.js"
             ],
+            "c/picklist2": [
+                "picklist2/picklist2.js"
+            ],
             "c/pubsub": [
                 "pubsub/pubsub.js"
             ],
@@ -89,6 +110,9 @@
             ],
             "c/stencilLwc": [
                 "stencilLwc/stencilLwc.js"
+            ],
+            "c/tempPick": [
+                "tempPick/tempPick.js"
             ],
             "c/testBinding": [
                 "testBinding/testBinding.js"

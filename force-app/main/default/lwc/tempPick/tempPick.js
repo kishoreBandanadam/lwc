@@ -1,14 +1,12 @@
 /* eslint-disable no-console */
-import { LightningElement, api, track, wire } from 'lwc';
+import { LightningElement, track } from 'lwc';
 import getAccount from '@salesforce/apex/accList.getAccount';
-import { CurrentPageReference } from 'lightning/navigation';
 import updateAcc from '@salesforce/apex/accList.updateAcc';
 import { fireEvent } from 'c/pubsub';
-export default class UpdateRec extends LightningElement {
-   @api recordId = "0017F00001yWouVQAS";
+export default class TempPick extends LightningElement {
+   recordId = "0017F00001yWouVQAS";
    @track account = {};
 
-   @wire(CurrentPageReference) pageRef;
 
     /*@track name = '';
     @track industry = '';

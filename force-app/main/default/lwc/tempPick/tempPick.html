@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Dependent picklist">
+        <div class="slds-p-around_x-small">
+<template if:true={account}>
+            <c-pick-list 
+                unique-key={account.Id} 
+                object-api-name="Account" 
+                selected-value={account.Controlling_Picklist__c}  
+                pick-listfield-api-name="Controlling_Picklist__c" 
+                onpicklistchange={handlePicklistChange}>
+            </c-pick-list>
+            <c-dependent-pick-list2 
+                unique-key={account.Id}
+                object-api-name="Account"
+                pick-listfield-api-name="Dependent_Picklist__c"
+                controlling-field-value={account.Controlling_Picklist__c}
+                selected-value={account.Dependent_Picklist__c}
+                onpicklistchange={handleDependentPicklistChange}>
+            </c-dependent-pick-list2>
+        </template>
+        </div>
+    </lightning-card>
+</template>

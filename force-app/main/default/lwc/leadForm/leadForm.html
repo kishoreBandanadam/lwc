@@ -1,0 +1,61 @@
+<template>
+
+    <a href="#" class="float" onclick={openModal}>
+        <i class="fa fa-plus my-float"></i>
+    </a>
+    
+    <template if:true={flag}>
+        <div style="height:640px">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">JOIN US</h2>
+                        <p>Never miss a Story, Subscribe to our Newsletter</p>
+                    </header>
+                    <div class={myPadding} id="modal-content-id-1">
+                        <template if:true={main}>
+                            <div id="stencil" class={stencilClass}>
+                                <c-stencil-lwc double={double} columns={cols} opacities={opacs}></c-stencil-lwc>
+                            </div>
+
+                            <div id="stencilReplacement" class={stencilReplacement}>
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_1-of-1 slds-large-size_5-of-12">
+                                        <span>
+                                            <lightning-record-edit-form object-api-name="Lead" onload={handleLoad}
+                                                 onsuccess={handleSuccess} onerror={handleError}>
+                                                <lightning-input-field field-name="firstName__c">
+                                                </lightning-input-field>
+                                                <lightning-input-field field-name="lastName__c"></lightning-input-field>
+                                                <lightning-input-field field-name="Email1__c"></lightning-input-field>
+                                                <br>
+                                                <div class="slds-grid">
+                                                    <div class="slds-col slds-size_4-of-6 slds-p-left_x-small ">
+                                                        <button class="slds-button slds-button_brand slds-button_stretch" onclick={handleSubmit}>Subscribe</button>
+                                                    </div>
+                                                    <div class="slds-col slds-size_2-of-6 slds-p-left_x-small">
+                                                        <button class="slds-button slds-button_neutral slds-button_stretch" onclick={closeModal}>Close</button>
+                                                    </div>
+                                                </div>
+                                            </lightning-record-edit-form>
+                                        </span>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 slds-large-size_7-of-12">
+                                        <span class="slds-align_absolute-center slds-p-top_x-large">
+                                            <c-illustration></c-illustration>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <div class={illustration2}>
+                            <c-illustration2></c-illustration2>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </template>
+</template>

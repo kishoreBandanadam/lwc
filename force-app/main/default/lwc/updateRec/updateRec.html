@@ -1,9 +1,10 @@
 <template>
     <lightning-card title="Update Record dependent picklist">
+        <lightning-button-icon icon-name="utility:refresh" slot="actions" onclick={refreshData}></lightning-button-icon>
         <div class="slds-p-around_x-small">
             <lightning-input label="Name" value={account.Name} onchange={handleNameChange}></lightning-input>
             <lightning-input label="Industry" value={account.Industry} onchange={handleIndChange}></lightning-input>
-
+<!--
             <c-pick-list 
                 unique-key={account.Id} 
                 object-api-name="Account" 
@@ -21,6 +22,39 @@
                 selected-value={account.Dependent_Picklist__c}
                 onpicklistchange={handleDependentPicklistChange}>
             </c-dependent-pick-list2>
+            -->
+
+            <c-picklist2
+                unique-key={account.Id} 
+                object-api-name="Account" 
+                record-type-id="0127F000000kyxEQAQ" 
+                selected-value={account.Master_Picklist__c}  
+                pick-listfield-api-name="Master_Picklist__c"
+                onpicklistchange={handleMasterPicklistChange}>
+            </c-picklist2>
+
+            <c-dependent-pick-list4
+                unique-key={account.Id}
+                object-api-name="Account"
+                record-type-id="0127F000000kyxEQAQ" 
+                pick-listfield-api-name="Controlling_Picklist__c"
+                controlling-field-value={account.Master_Picklist__c}
+                controlling-field-api="Master_Picklist__c"
+                selected-value={account.Controlling_Picklist__c}
+                onpicklistchange={handlePicklistChange}>
+            </c-dependent-pick-list4>
+
+            <c-dependent-pick-list4
+                unique-key={account.Id}
+                object-api-name="Account"
+                record-type-id="0127F000000kyxEQAQ" 
+                pick-listfield-api-name="Dependent_Picklist__c"
+                controlling-field-value={account.Controlling_Picklist__c}
+                controlling-field-api="Controlling_Picklist__c"
+                selected-value={account.Dependent_Picklist__c}
+                onpicklistchange={handleDependentPicklistChange}>
+            </c-dependent-pick-list4>
+
             <lightning-input type="Phone" label="Phone" value={account.Phone} onchange={handlePhnChange}></lightning-input><br/>
             <lightning-button label="Save" value={account.Id} onclick={handleClick}></lightning-button>
         </div>

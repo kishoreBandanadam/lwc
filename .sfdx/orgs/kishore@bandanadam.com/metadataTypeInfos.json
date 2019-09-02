@@ -4165,15 +4165,27 @@
             "hasStandardMembers": false,
             "deleteSupported": true,
             "decompositionConfig": {
-                "strategy": "nonDecomposed",
-                "workspaceStrategy": "nonDecomposed",
+                "strategy": "describeMetadata",
+                "workspaceStrategy": "folderPerSubtype",
                 "commitStrategy": "fineGrainTracking",
+                "contentStrategy": "N/A",
                 "metadataName": "Bot",
-                "useSparseComposition": false,
-                "decompositions": [],
-                "contentStrategy": "nonDecomposedContent"
+                "isGlobal": false,
+                "isEmptyContainer": false,
+                "useSparseComposition": true,
+                "decompositions": [
+                    {
+                        "metadataName": "BotVersion",
+                        "metadataEntityNameElement": "fullName",
+                        "xmlFragmentName": "botVersions",
+                        "defaultDirectory": "botVersions",
+                        "ext": "botVersion",
+                        "hasStandardMembers": false,
+                        "isAddressable": true
+                    }
+                ]
             },
-            "hasVirtualSubtypes": false
+            "hasVirtualSubtypes": true
         },
         "AnimationRule": {
             "metadataName": "AnimationRule",
@@ -5826,6 +5838,57 @@
             "isSourceTracked": true,
             "nameForMsgs": "Sharing Territory Rule",
             "nameForMsgsPlural": "Sharing Territory Rules",
+            "deleteSupported": true
+        },
+        "BotVersion": {
+            "parent": {
+                "metadataName": "Bot",
+                "isAddressable": true,
+                "isSourceTracked": true,
+                "ext": "bot",
+                "hasContent": false,
+                "defaultDirectory": "bots",
+                "nameForMsgs": "Bot",
+                "nameForMsgsPlural": "Bots",
+                "contentIsBinary": false,
+                "childXmlNames": [
+                    "BotVersion"
+                ],
+                "hasStandardMembers": false,
+                "deleteSupported": true,
+                "decompositionConfig": {
+                    "strategy": "describeMetadata",
+                    "workspaceStrategy": "folderPerSubtype",
+                    "commitStrategy": "fineGrainTracking",
+                    "contentStrategy": "N/A",
+                    "metadataName": "Bot",
+                    "isGlobal": false,
+                    "isEmptyContainer": false,
+                    "useSparseComposition": true,
+                    "decompositions": [
+                        {
+                            "metadataName": "BotVersion",
+                            "metadataEntityNameElement": "fullName",
+                            "xmlFragmentName": "botVersions",
+                            "defaultDirectory": "botVersions",
+                            "ext": "botVersion",
+                            "hasStandardMembers": false,
+                            "isAddressable": true
+                        }
+                    ]
+                },
+                "hasVirtualSubtypes": true
+            },
+            "metadataName": "BotVersion",
+            "defaultDirectory": "botVersions",
+            "ext": "botVersion",
+            "hasStandardMembers": false,
+            "hasContent": false,
+            "contentIsBinary": false,
+            "isAddressable": true,
+            "isSourceTracked": true,
+            "nameForMsgs": "Bot Version",
+            "nameForMsgsPlural": "Bot Versions",
             "deleteSupported": true
         }
     }

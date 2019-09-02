@@ -2,11 +2,19 @@
 import { LightningElement, track, wire, api } from 'lwc';
 import { getPicklistValuesByRecordType } from 'lightning/uiObjectInfoApi';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
+import { CurrentPageReference } from 'lightning/navigation';
+import { registerListener, unregisterAllListeners } from 'c/pubsub';
+import { NavigationMixin } from 'lightning/navigation';
+import { fireEvent } from 'c/pubsub';
 
-export default class DependentPickList2 extends LightningElement {
+export default class DependentPickList4 extends NavigationMixin(LightningElement) {
 
-    @api objectApiName;
-    @api pickListfieldApiName;
+    @wire(CurrentPageReference) pageRef;
+
+    @api objectApiName; 
+    @api pickListfieldApiName; //this field api name
+    @api controllingFieldApi; //parent field api name that is controlling field api name
+    //@api controllingFieldValue; //parent field value
     @api label;
     @api variant;
 
@@ -16,8 +24,30 @@ export default class DependentPickList2 extends LightningElement {
     prevControllingFieldVal;
     @track value;
 
-    //only for lwc for mapping values in list
+    /*only for lwc for mapping values in list and 
+    also for mapping this dependent picklist with another dependent picklist(give unique = record Id while using in dependent picklist)*/
     @api uniqueKey;
+
+    connectedCallback() {
+        console.log("In connected callback depndent");
+        registerListener('controllingValue', this.handelControllingValue, this);
+    }
+
+    @api
+    get controllingFieldValue() {
+        return this.controllingFieldVal;
+    }
+    set controllingFieldValue(value) {
+        this.controllingFieldVal = value;
+        this.reinitiatemap();
+    }
+
+
+    disconnectedCallback() {
+        console.log("In disconnected callback depndent");
+        unregisterAllListeners(this);
+    }
+
 
     @api 
     get recordTypeId() {
@@ -45,42 +75,49 @@ export default class DependentPickList2 extends LightningElement {
             this.value = val;
     }
 
-    @api
-    get controllingFieldValue() {
-        console.log("setter controllingFieldValue", this.controllingFieldVal);
-        return this.controllingFieldVal;
-    }
-    set controllingFieldValue(value) {
-        this.prevControllingFieldVal = this.controllingFieldVal;
-        this.controllingFieldVal = value;
-        
-        if (this.prevControllingFieldVal !== undefined && this.controllingFieldVal !== this.prevControllingFieldVal && this.selectedValue !== undefined) {
-            console.log("etter null");
-            let opt = [{ label: '--None--', value: "" }];
-            //this.value = opt[0].value;
-            this.reinitiatemap();
+    handelControllingValue(valuesObj) {
+        console.log("In handelControllingValue", JSON.stringify(valuesObj));
+        if (`${this.controllingFieldApi}${this.uniqueKey}` === valuesObj.uniqueFieldKey) {
+            if (valuesObj.selValue === '' || valuesObj.selValue === null || valuesObj.selValue === undefined) {
+                this.selectedValue = '';
+                this.options = [{ label: '--None--', value: "" }];
+            } else {
+                this.selectedValue = '';
+                if (this.myMap !== null && this.myMap !== undefined) {
 
-            let selectedValue = opt[0].value;
+                    let tempOptions = [{ label: '--None--', value: "" }];
+                        console.log("valuesObj.selValue", valuesObj.selValue);
+                        if(this.myMap.get(valuesObj.selValue)) {
+                            this.myMap.get(valuesObj.selValue).forEach(opt => tempOptions.push(opt));
+                        }
+
+                    this.options = tempOptions;
+                }
+            }
+
+            let selectedValue = '';
             let key = this.uniqueKey;
+            //Firing change event for aura container to handle
+            //For Self
             const pickValueChangeEvent = new CustomEvent('picklistchange', {
                 detail: { selectedValue, key },
             });
             this.dispatchEvent(pickValueChangeEvent);
-
-        }else {
-           // this.controllingFieldVal = value;
-            this.reinitiatemap();
-            }
-            console.log("getter controllingFieldValue", this.controllingFieldVal);
+            
+            //For dependent picklist
+            let eventValues = { selValue: '', uniqueFieldKey: `${this.pickListfieldApiName}${this.uniqueKey}` };
+            //Fire Pub/Sub Event, So that every other comp in the page knows the change
+            fireEvent(this.pageRef, 'controllingValue', eventValues);
+        }
     }
+
     
     @track options = [
-        {label : '--None--', value : ''},
                       {label : 'Default 1', value : 'Default1'},
-                      {label : 'Default 2', value : 'Default2'}
-                      
+                      {label : 'Default 2', value : 'Default2'},
+                      {label : '--None--', value : ''}
                      ];
-    //@track value = '';
+
     @track myMap = undefined;
 
     @wire(getObjectInfo, { objectApiName: '$objectApiName' })
@@ -120,8 +157,6 @@ export default class DependentPickList2 extends LightningElement {
                                         let temp = pickMap.get(key);
                                         temp.push(pickValue);
                                         pickMap.set(key, temp);
-                                        //console.log("In inner if", pickMap.has(key));
-                                        //console.log("In inner if temp", temp);
                                     }else {
                                         let temp2 = [];
                                         temp2.push(pickValue);
@@ -149,6 +184,10 @@ export default class DependentPickList2 extends LightningElement {
                             this.value = this.options[0].value;
                             return;
                         }
+                        else if(!this.selectedValue) {
+                            
+                            this.value = { label: '--None--', value: '' }.value;
+                        }
 
                         this.initiateMap(pickMap);
                         console.log("Initial selectedValue ", this.selectedValue);
@@ -175,18 +214,22 @@ export default class DependentPickList2 extends LightningElement {
         let selectedValue = this.value;
         let key = this.uniqueKey;
         //Firing change event for aura container to handle
+        //For Self
         const pickValueChangeEvent = new CustomEvent('picklistchange', {
             detail: { selectedValue, key },
         });
         this.dispatchEvent(pickValueChangeEvent);
+
+        //For dependent picklist
+        let eventValues = {selValue : selectedValue, uniqueFieldKey: `${this.pickListfieldApiName}${this.uniqueKey}`};
+        //Fire Pub/Sub Event, So that every other comp in the page knows the change
+        fireEvent(this.pageRef, 'controllingValue', eventValues);
     }
     
     initiateMap(thisMap) {
         this.myMap = thisMap;
 
         if (thisMap !== null && thisMap !== undefined) {
-            //this.options = this.myMap.get(this.controllingFieldValue);
-            //this.options.push({ label: 'None', value: "" });
             let tempOptions = [{ label: '--None--', value: "" }];
             if (this.controllingFieldValue !== null && this.controllingFieldValue !== undefined && this.controllingFieldValue !== '') {
                 console.log("this.controllingFieldValue", this.controllingFieldValue);
@@ -196,7 +239,6 @@ export default class DependentPickList2 extends LightningElement {
             }
             this.options = tempOptions;
         }
-        //console.log("this.myMap", this.myMap);
         console.log("***Final Options dependent Picklist*** ", JSON.stringify(this.options));
     }
     
@@ -206,12 +248,6 @@ export default class DependentPickList2 extends LightningElement {
             this.initiateMap(this.myMap);
             console.log("this.myMap length", this.myMap.length);
         }
-    }
-
-    //call this method just to refresh fresh data like custom refresh
-    @api
-    refresh() {
-        this.prevControllingFieldVal = undefined;
     }
 
 }

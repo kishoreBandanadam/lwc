@@ -2,15 +2,30 @@
 import { LightningElement, track, wire, api } from 'lwc';
 import { getPicklistValuesByRecordType } from 'lightning/uiObjectInfoApi';
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
+import { CurrentPageReference } from 'lightning/navigation';
+import { fireEvent } from 'c/pubsub';
 
-export default class PickList extends LightningElement {
+export default class Picklist2 extends LightningElement {
     
+    @wire(CurrentPageReference) pageRef;
+
     @api objectApiName;
     @api pickListfieldApiName;
     @api label;
     @api variant;
 
+    /*only for lwc for mapping values in list and 
+    also for mapping this with dependent picklist(give unique = record Id while using in dependent picklist)*/
+    @api uniqueKey;
+
+    @track value;
     recordTypeIdValue;
+
+    @track options = [
+        { label: 'Default 1', value: 'Default1' },
+        { label: 'Default 2', value: 'Default2' },
+        { label: '--None--', value: "" }
+    ];   
     
     @api 
     get recordTypeId() {
@@ -22,11 +37,6 @@ export default class PickList extends LightningElement {
         console.log("setter defaultRectype", this.recordTypeIdValue);
     }
 
-    //only for lwc for mapping values in list
-    @api uniqueKey;
-
-    //@api selectedValue = undefined;
-    @track value;
 
     @api 
     get selectedValue() {
@@ -40,14 +50,7 @@ export default class PickList extends LightningElement {
         else
             this.value = val;
     }
-
-
-    @track options = [
-                      {label: '--None--', value: "" },
-                      {label : 'Default 1', value : 'Default1'},
-                      {label : 'Default 2', value : 'Default2'},
-                      
-                     ];            
+         
 
     @wire(getObjectInfo, { objectApiName: '$objectApiName' })
     getRecordTypeId({ error, data }) {
@@ -104,23 +107,18 @@ export default class PickList extends LightningElement {
         let key = this.uniqueKey;
 
         //Firing change event for aura container to handle
+        //For Self
         const pickValueChangeEvent = new CustomEvent('picklistchange', {
             detail: { selectedValue, key },
         });
         this.dispatchEvent(pickValueChangeEvent);
+
+        //For dependent picklist
+        let eventValues = {selValue : selectedValue, uniqueFieldKey: `${this.pickListfieldApiName}${this.uniqueKey}`};
+        console.log("eventValues",JSON.stringify(eventValues));
+        console.log("eventValues",eventValues);
+        //Fire Pub/Sub Event, So that every other comp in the page knows the change
+        fireEvent(this.pageRef, 'controllingValue', eventValues);
     }
 
-     /*connectedCallback() {
-         if(this.selectedValue) {
-            this.value = this.selectedValue;
-         }
-     }*/
-
-    /*renderedCallback() {
-        console.log("In picklist rendered out",this.selectedValue);
-        if (this.selectedValue) {
-            this.value = this.selectedValue;
-            console.log("In picklist rendered out",this.value);
-        }
-    }*/
 }
